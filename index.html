@@ -867,78 +867,93 @@ function calculateMatch(tool, needs, input) {
 
     let score = 0;
 
-
-    // ======================================
-    // GOAL MATCH
-    // ======================================
-
-    needs.goals.forEach(goal => {
-
-        if (tool.keywords.includes(goal)) {
-            score += 30;
-        }
-
-    });
-
-
-    // ======================================
-    // CV
-    // ======================================
-
+    // 1. Main goal
     if (needs.goals.includes("cv")) {
-
-        if (tool.name === "Canva") {
-            score += 35;
-        }
-
-        if (tool.name === "ChatGPT") {
-            score += 30;
-        }
-
-        if (tool.name === "Grammarly") {
-            score += 20;
-        }
+        if (tool.name === "ChatGPT") score += 45;
+        else if (tool.name === "Canva") score += 45;
+        else if (tool.name === "Grammarly") score += 30;
+        else score += 5;
     }
 
+    else if (needs.goals.includes("video")) {
+        if (tool.name === "CapCut") score += 50;
+        else if (tool.name === "Runway") score += 45;
+        else if (tool.name === "ChatGPT") score += 20;
+        else score += 5;
+    }
 
-    // ======================================
-    // CAREER / JOB
-    // ======================================
+    else if (needs.goals.includes("study")) {
+        if (tool.name === "NotebookLM") score += 50;
+        else if (tool.name === "ChatGPT") score += 45;
+        else if (tool.name === "Perplexity") score += 30;
+        else score += 5;
+    }
 
+    else if (needs.goals.includes("image")) {
+        if (tool.name === "Midjourney") score += 50;
+        else if (tool.name === "Canva") score += 40;
+        else score += 5;
+    }
+
+    else if (needs.goals.includes("coding")) {
+        if (tool.name === "GitHub Copilot") score += 50;
+        else if (tool.name === "ChatGPT") score += 45;
+        else score += 5;
+    }
+
+    else if (needs.goals.includes("presentation")) {
+        if (tool.name === "Gamma") score += 50;
+        else if (tool.name === "Canva") score += 45;
+        else if (tool.name === "ChatGPT") score += 25;
+        else score += 5;
+    }
+
+    else if (needs.goals.includes("music")) {
+        if (tool.name === "Suno") score += 55;
+        else score += 5;
+    }
+
+    else if (needs.goals.includes("voice")) {
+        if (tool.name === "ElevenLabs") score += 55;
+        else score += 5;
+    }
+
+    else if (needs.goals.includes("research")) {
+        if (tool.name === "Perplexity") score += 50;
+        else if (tool.name === "ChatGPT") score += 40;
+        else if (tool.name === "NotebookLM") score += 35;
+        else score += 5;
+    }
+
+    // 2. Career / job
     if (needs.goals.includes("career")) {
-
         if (
             tool.name === "ChatGPT" ||
-            tool.name === "Canva" ||
-            tool.name === "Grammarly"
+            tool.name === "Canva"
         ) {
             score += 20;
         }
+
+        if (tool.name === "Grammarly") {
+            score += 12;
+        }
     }
 
-
-    // ======================================
-    // FREE
-    // ======================================
-
+    // 3. Free request
     if (needs.budget === "free") {
 
         if (
             tool.name === "ChatGPT" ||
             tool.name === "Canva" ||
-            tool.name === "CapCut" ||
             tool.name === "Grammarly" ||
+            tool.name === "CapCut" ||
             tool.name === "NotebookLM"
         ) {
-            score += 15;
+            score += 10;
         }
     }
 
-
-    // ======================================
-    // BEGINNER
-    // ======================================
-
+    // 4. Beginner
     if (needs.experience === "beginner") {
 
         if (
@@ -947,62 +962,38 @@ function calculateMatch(tool, needs, input) {
             tool.name === "CapCut" ||
             tool.name === "Gamma"
         ) {
-            score += 10;
+            score += 8;
         }
     }
 
-
-    // ======================================
-    // PROFESSIONAL
-    // ======================================
-
+    // 5. Professional
     if (needs.experience === "professional") {
 
         if (
-            tool.name === "Canva" ||
             tool.name === "ChatGPT" ||
+            tool.name === "Canva" ||
             tool.name === "Runway"
         ) {
-            score += 10;
+            score += 8;
         }
     }
 
-
-    // ======================================
-    // JOB SEEKER
-    // ======================================
-
-    if (needs.audience === "job_seeker") {
-
-        if (
-            tool.name === "ChatGPT" ||
-            tool.name === "Canva" ||
-            tool.name === "Grammarly"
-        ) {
-            score += 15;
-        }
-    }
-
-
-    // ======================================
-    // DIRECT KEYWORDS
-    // ======================================
+    // 6. Direct keyword relevance
+    let keywordMatches = 0;
 
     tool.keywords.forEach(keyword => {
 
         if (text.includes(keyword)) {
-            score += 5;
+            keywordMatches++;
         }
 
     });
 
+    score += Math.min(keywordMatches * 3, 12);
 
-    // ======================================
-    // MAXIMUM SCORE
-    // ======================================
-
-    return Math.min(score, 98);
-}
+    // 7. Keep score between 5 and 98
+    return Math.min(Math.max(score, 5), 98);
+            }
 
 
 // ==========================================
