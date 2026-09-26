@@ -1,365 +1,323 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AIMatchly — Find the right AI</title>
+<title>AIMatchly — Find the Right AI Tool</title>
 
-<meta name="description" content="AIMatchly helps you find the right AI tool for your specific goal, budget and experience.">
+<meta name="description" content="AIMatchly finds the right AI tool for what you want to accomplish.">
 
 <style>
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f7f8fc;
-  color:#171923;
-  line-height:1.5;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f8fafc;
+    color: #111827;
+    line-height: 1.6;
 }
 
-header{
-  background:white;
-  border-bottom:1px solid #e8e8ee;
-  padding:17px 6%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  position:sticky;
-  top:0;
-  z-index:10;
+header {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.logo{
-  font-size:25px;
-  font-weight:800;
-  letter-spacing:-1px;
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: #4f46e5;
 }
 
-.logo span{
-  color:#635bff;
+nav {
+    display: flex;
+    gap: 22px;
 }
 
-nav{
-  display:flex;
-  gap:25px;
+nav a {
+    text-decoration: none;
+    color: #374151;
+    font-size: 14px;
 }
 
-nav a{
-  text-decoration:none;
-  color:#555;
-  font-size:14px;
+.hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+    background: linear-gradient(135deg, #eef2ff, #ffffff);
 }
 
-.hero{
-  background:white;
-  text-align:center;
-  padding:75px 20px 65px;
+.badge {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #4338ca;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-.badge{
-  display:inline-block;
-  background:#eeecff;
-  color:#554bd8;
-  padding:7px 13px;
-  border-radius:30px;
-  font-size:13px;
-  font-weight:bold;
-  margin-bottom:18px;
+.hero h1 {
+    max-width: 800px;
+    margin: auto;
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 20px;
 }
 
-.hero h1{
-  max-width:800px;
-  margin:auto;
-  font-size:48px;
-  line-height:1.1;
-  letter-spacing:-1.5px;
+.hero p {
+    max-width: 650px;
+    margin: auto;
+    color: #6b7280;
+    font-size: 18px;
+    margin-bottom: 30px;
 }
 
-.hero h1 span{
-  color:#635bff;
+.search-box {
+    max-width: 700px;
+    margin: auto;
+    display: flex;
+    gap: 10px;
 }
 
-.hero p{
-  max-width:650px;
-  margin:20px auto 30px;
-  color:#666;
-  font-size:18px;
+.search-box input {
+    flex: 1;
+    padding: 18px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
 }
 
-.search-container{
-  max-width:760px;
-  margin:auto;
+.search-box input:focus {
+    border-color: #6366f1;
 }
 
-.search-box{
-  background:white;
-  border:1px solid #ddd;
-  border-radius:16px;
-  padding:7px;
-  display:flex;
-  box-shadow:0 10px 35px rgba(0,0,0,.08);
+.search-box button {
+    border: none;
+    background: #4f46e5;
+    color: white;
+    padding: 0 25px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.search-box input{
-  flex:1;
-  border:0;
-  outline:0;
-  padding:17px;
-  font-size:16px;
-  min-width:0;
+.search-box button:hover {
+    background: #4338ca;
 }
 
-.search-box button{
-  border:0;
-  background:#635bff;
-  color:white;
-  border-radius:11px;
-  padding:0 25px;
-  font-weight:bold;
-  cursor:pointer;
+.examples {
+    margin-top: 20px;
+    color: #6b7280;
+    font-size: 14px;
 }
 
-.search-box button:hover{
-  opacity:.9;
+.examples span {
+    display: inline-block;
+    background: white;
+    border: 1px solid #e5e7eb;
+    padding: 7px 11px;
+    border-radius: 20px;
+    margin: 4px;
 }
 
-.examples{
-  margin-top:15px;
-  color:#888;
-  font-size:13px;
+section {
+    padding: 70px 6%;
 }
 
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:55px 20px;
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-.section-title{
-  text-align:center;
-  margin-bottom:30px;
+.section-title h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
 }
 
-.section-title h2{
-  font-size:30px;
-  margin-bottom:8px;
+.section-title p {
+    color: #6b7280;
 }
 
-.section-title p{
-  color:#777;
+.steps {
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
 }
 
-.steps{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
+.step {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
 }
 
-.step{
-  background:white;
-  border:1px solid #eee;
-  border-radius:16px;
-  padding:28px;
-  text-align:center;
+.step-number {
+    width: 45px;
+    height: 45px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: #4f46e5;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
 }
 
-.step-number{
-  width:45px;
-  height:45px;
-  background:#635bff;
-  color:white;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:0 auto 15px;
-  font-weight:bold;
+.categories {
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
 }
 
-.step h3{
-  margin-bottom:8px;
+.category {
+    background: white;
+    border: 1px solid #e5e7eb;
+    padding: 20px;
+    border-radius: 14px;
+    text-align: center;
+    font-weight: bold;
 }
 
-.step p{
-  color:#777;
-  font-size:14px;
+#results {
+    display: none;
+    background: #f1f5f9;
 }
 
-.categories{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
+.results-container {
+    max-width: 1000px;
+    margin: auto;
 }
 
-.category{
-  background:white;
-  border:1px solid #eee;
-  border-radius:13px;
-  padding:20px 12px;
-  text-align:center;
-  font-weight:bold;
-  cursor:pointer;
+.result-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 18px;
 }
 
-.category:hover{
-  border-color:#635bff;
-  color:#635bff;
+.result-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
 }
 
-#results{
-  display:none;
-  max-width:900px;
-  margin:auto;
-  padding:10px 20px 50px;
+.result-card h3 {
+    font-size: 22px;
 }
 
-.results-header{
-  text-align:center;
-  margin-bottom:25px;
+.match {
+    background: #dcfce7;
+    color: #166534;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
-.results-header h2{
-  font-size:30px;
+.result-card p {
+    color: #6b7280;
+    margin: 12px 0;
 }
 
-.results-header p{
-  color:#777;
-  margin-top:7px;
+.tags {
+    margin: 12px 0;
 }
 
-.tool-card{
-  background:white;
-  border:1px solid #e7e7ed;
-  border-radius:17px;
-  padding:23px;
-  margin-bottom:15px;
+.tag {
+    display: inline-block;
+    background: #eef2ff;
+    color: #4338ca;
+    padding: 5px 9px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin: 3px;
 }
 
-.tool-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
+.why {
+    background: #f9fafb;
+    border-left: 4px solid #4f46e5;
+    padding: 12px;
+    margin: 15px 0;
+    font-size: 14px;
 }
 
-.tool-name{
-  font-size:21px;
-  font-weight:bold;
+.try-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #111827;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 10px;
+    font-weight: bold;
 }
 
-.match{
-  background:#e9e7ff;
-  color:#5148d8;
-  padding:6px 10px;
-  border-radius:20px;
-  font-size:13px;
-  font-weight:bold;
-  white-space:nowrap;
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    background: #111827;
+    color: #9ca3af;
 }
 
-.tool-card p{
-  color:#666;
-  margin:10px 0;
-}
+@media (max-width: 700px) {
 
-.tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin:12px 0;
-}
+    header {
+        padding: 15px 20px;
+    }
 
-.tag{
-  background:#f1f1f5;
-  color:#666;
-  padding:5px 9px;
-  border-radius:6px;
-  font-size:12px;
-}
+    nav {
+        display: none;
+    }
 
-.try-button{
-  display:inline-block;
-  margin-top:8px;
-  background:#635bff;
-  color:white;
-  text-decoration:none;
-  padding:11px 17px;
-  border-radius:9px;
-  font-size:13px;
-  font-weight:bold;
-}
+    .hero {
+        padding: 60px 18px 45px;
+    }
 
-footer{
-  background:#171923;
-  color:white;
-  text-align:center;
-  padding:40px 20px;
-  margin-top:30px;
-}
+    .hero h1 {
+        font-size: 36px;
+    }
 
-footer p{
-  color:#aaa;
-  margin-top:8px;
-}
+    .hero p {
+        font-size: 16px;
+    }
 
-@media(max-width:700px){
+    .search-box {
+        flex-direction: column;
+    }
 
-  header{
-    padding:15px 20px;
-  }
+    .search-box button {
+        padding: 16px;
+    }
 
-  nav{
-    display:none;
-  }
+    .steps {
+        grid-template-columns: 1fr;
+    }
 
-  .hero{
-    padding:55px 18px 45px;
-  }
+    .categories {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-  .hero h1{
-    font-size:34px;
-  }
-
-  .hero p{
-    font-size:16px;
-  }
-
-  .search-box{
-    flex-direction:column;
-    border:0;
-    box-shadow:none;
-    gap:9px;
-  }
-
-  .search-box input{
-    border:1px solid #ddd;
-    border-radius:11px;
-    background:white;
-  }
-
-  .search-box button{
-    height:52px;
-  }
-
-  .steps{
-    grid-template-columns:1fr;
-  }
-
-  .categories{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .tool-top{
-    align-items:flex-start;
-  }
-
+    section {
+        padding: 50px 20px;
+    }
 }
 
 </style>
@@ -369,327 +327,307 @@ footer p{
 
 <header>
 
-  <div class="logo">
-    AI<span>Matchly</span>
-  </div>
+<div class="logo">AIMatchly</div>
 
-  <nav>
-    <a href="#">AI Tools</a>
-    <a href="#">Categories</a>
-    <a href="#">Guides</a>
-    <a href="#">About</a>
-  </nav>
+<nav>
+<a href="#tools">AI Tools</a>
+<a href="#categories">Categories</a>
+<a href="#how">How it works</a>
+<a href="#about">About</a>
+</nav>
 
 </header>
 
-
 <section class="hero">
 
-  <div class="badge">
-    ✨ AI Tool Matchmaker
-  </div>
+<div class="badge">✨ AI Tool Matchmaker</div>
 
-  <h1>
-    Find the <span>right AI</span> for what you want to do.
-  </h1>
+<h1>Find the right AI for what you want to do.</h1>
 
-  <p>
-    Tell us what you want to accomplish.
-    AIMatchly finds the AI tools that fit your goal.
-  </p>
+<p>
+Tell us what you want to accomplish.
+AIMatchly analyzes your request and finds the AI tools that fit your needs.
+</p>
 
-  <div class="search-container">
+<div class="search-box">
 
-    <div class="search-box">
+<input
+id="userInput"
+type="text"
+placeholder="What do you want AI to help you with?"
+>
 
-      <input
-        id="userInput"
-        type="text"
-        placeholder="What do you want AI to help you with?"
-      >
+<button onclick="findAI()">
+FIND MY AI →
+</button>
 
-      <button onclick="findAI()">
-        FIND MY AI →
-      </button>
+</div>
 
-    </div>
-
-    <div class="examples">
-      Try: Create a CV · Make a video · Study for an exam · Create a logo
-    </div>
-
-  </div>
+<div class="examples">
+Try:
+<span>Create a CV</span>
+<span>Create a video</span>
+<span>Study for an exam</span>
+<span>Create a logo</span>
+</div>
 
 </section>
-
 
 <section id="results">
 
-  <div class="results-header">
+<div class="results-container">
 
-    <h2>Your AI matches</h2>
+<div class="section-title">
 
-    <p id="understanding"></p>
+<h2>Your AI matches</h2>
 
-  </div>
+<p id="resultDescription">
+We analyzed your request and found the best matches.
+</p>
 
-  <div id="resultList"></div>
+</div>
 
-</section>
+<div id="resultsList"></div>
 
-
-<section class="container">
-
-  <div class="section-title">
-
-    <h2>How AIMatchly works</h2>
-
-    <p>Finding an AI tool shouldn't be complicated.</p>
-
-  </div>
-
-  <div class="steps">
-
-    <div class="step">
-
-      <div class="step-number">1</div>
-
-      <h3>Tell us what you need</h3>
-
-      <p>
-        Describe your goal in your own words.
-      </p>
-
-    </div>
-
-    <div class="step">
-
-      <div class="step-number">2</div>
-
-      <h3>We match your needs</h3>
-
-      <p>
-        Our matching engine analyzes your request.
-      </p>
-
-    </div>
-
-    <div class="step">
-
-      <div class="step-number">3</div>
-
-      <h3>Choose your tool</h3>
-
-      <p>
-        Compare the tools that fit your needs.
-      </p>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
+<section id="how">
 
-<section class="container">
+<div class="section-title">
 
-  <div class="section-title">
+<h2>How AIMatchly works</h2>
 
-    <h2>Explore AI categories</h2>
+<p>Finding the right AI should be simple.</p>
 
-    <p>Find tools for almost anything.</p>
+</div>
 
-  </div>
+<div class="steps">
 
-  <div class="categories">
+<div class="step">
 
-    <div class="category">🎬 Video</div>
-    <div class="category">🖼️ Images</div>
-    <div class="category">✍️ Writing</div>
-    <div class="category">💼 CV & Career</div>
-    <div class="category">📚 Study</div>
-    <div class="category">💻 Coding</div>
-    <div class="category">🎵 Music</div>
-    <div class="category">📊 Business</div>
+<div class="step-number">1</div>
 
-  </div>
+<h3>Tell us what you need</h3>
+
+<p>Describe your goal in your own words.</p>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">2</div>
+
+<h3>We analyze your request</h3>
+
+<p>Our matching engine identifies your needs.</p>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">3</div>
+
+<h3>Choose your AI</h3>
+
+<p>Compare the best matching tools.</p>
+
+</div>
+
+</div>
 
 </section>
 
+<section id="categories">
 
-<footer>
+<div class="section-title">
 
-  <strong>AIMatchly</strong>
+<h2>Explore AI categories</h2>
 
-  <p>
-    Find the right AI for what you want to do.
-  </p>
+<p>Find tools for different needs.</p>
 
-</footer>
+</div>
 
+<div class="categories">
 
-<script>
+<div class="category">🎨 Images</div>
+<div class="category">🎬 Video</div>
+<div class="category">✍️ Writing</div>
+<div class="category">💼 Career</div>
+<div class="category">📚 Study</div>
+<div class="category">💻 Coding</div>
+<div class="category">🎵 Music</div>
+<div class="category">📊 Business</div>
 
-/*
-  AIMatchly V2
-  Matching engine + AI tools database
-*/
+</div>
+
+</section>
+
+<footer id="about">
+
+<p>© 2026 AIMatchly — Find the right AI for what you want to do.</p>
+
+  </footer>
+  <script>
+
+// ==========================================
+// AI TOOLS DATABASE
+// ==========================================
 
 const tools = [
 
-  {
-    name:"ChatGPT",
-    keywords:[
-      "cv","resume","writing","write","blog",
-      "study","learn","code","coding","research",
-      "email","interview","translate","translation",
-      "explain","ideas","business"
+{
+    name: "ChatGPT",
+    keywords: [
+        "cv","resume","career","job","writing",
+        "study","coding","research","presentation",
+        "email","language","analysis"
     ],
-    description:
-      "A versatile AI assistant for writing, learning, coding, research and everyday tasks.",
-    tags:["Writing","Study","Coding","Career"],
-    url:"https://chatgpt.com"
-  },
+    description: "A versatile AI assistant for writing, CVs, study, coding, research and many other tasks.",
+    tags: ["Writing","CV","Study","Coding"],
+    url: "https://chatgpt.com"
+},
 
-  {
-    name:"Canva",
-    keywords:[
-      "cv","resume","design","logo","poster",
-      "presentation","instagram","facebook",
-      "social","image","graphics","thumbnail"
+{
+    name: "Canva",
+    keywords: [
+        "cv","resume","career","design",
+        "image","presentation","social",
+        "logo","poster","marketing"
     ],
-    description:
-      "Create professional designs, CVs, presentations, social media graphics and more.",
-    tags:["Design","CV","Social Media","Presentation"],
-    url:"https://www.canva.com"
-  },
+    description: "A design platform with AI tools and ready-made templates for CVs, presentations and visual content.",
+    tags: ["Design","CV","Presentation","Images"],
+    url: "https://www.canva.com"
+},
 
-  {
-    name:"Perplexity",
-    keywords:[
-      "research","sources","source","search",
-      "facts","information","study","researching"
+{
+    name: "Grammarly",
+    keywords: [
+        "writing","grammar","english",
+        "rewrite","email","professional",
+        "cv","resume"
     ],
-    description:
-      "AI-powered search and research with web sources.",
-    tags:["Research","Search","Sources"],
-    url:"https://www.perplexity.ai"
-  },
+    description: "An AI writing assistant that helps improve grammar, clarity and professional writing.",
+    tags: ["Writing","Grammar","English","CV"],
+    url: "https://www.grammarly.com"
+},
 
-  {
-    name:"NotebookLM",
-    keywords:[
-      "pdf","document","documents","study",
-      "notes","summarize","summary","exam",
-      "learn"
+{
+    name: "Perplexity",
+    keywords: [
+        "research","sources","information",
+        "search","facts","study"
     ],
-    description:
-      "Study and research using your own documents and sources.",
-    tags:["PDF","Study","Research"],
-    url:"https://notebooklm.google.com"
-  },
+    description: "An AI search and research assistant designed to provide answers with sources.",
+    tags: ["Research","Search","Sources"],
+    url: "https://www.perplexity.ai"
+},
 
-  {
-    name:"Midjourney",
-    keywords:[
-      "image","images","art","artistic",
-      "realistic","picture","pictures",
-      "illustration","creative"
+{
+    name: "NotebookLM",
+    keywords: [
+        "study","research","pdf",
+        "documents","notes","exam",
+        "summarize"
     ],
-    description:
-      "Create AI-generated images and artwork from your ideas.",
-    tags:["Images","Art","Creative"],
-    url:"https://www.midjourney.com"
-  },
+    description: "An AI research and study assistant that works with your documents and sources.",
+    tags: ["Study","PDF","Research","Notes"],
+    url: "https://notebooklm.google.com"
+},
 
-  {
-    name:"Runway",
-    keywords:[
-      "video","videos","film","movie",
-      "text-to-video","creator","generation"
+{
+    name: "CapCut",
+    keywords: [
+        "video","tiktok","youtube",
+        "shorts","reels","editing",
+        "social"
     ],
-    description:
-      "AI tools for video generation and creative video production.",
-    tags:["Video","Generation","Creator"],
-    url:"https://runwayml.com"
-  },
+    description: "A popular video editor with AI-powered tools for social media and short-form video.",
+    tags: ["Video","TikTok","YouTube","Editing"],
+    url: "https://www.capcut.com"
+},
 
-  {
-    name:"CapCut",
-    keywords:[
-      "video","tiktok","youtube","shorts",
-      "edit","editing","subtitles","clips"
+{
+    name: "Runway",
+    keywords: [
+        "video","generation",
+        "editing","creative",
+        "professional"
     ],
-    description:
-      "Video editing tools for creators and social media.",
-    tags:["Video","Editing","Social"],
-    url:"https://www.capcut.com"
-  },
+    description: "An AI platform for generating and editing creative video content.",
+    tags: ["Video","Generation","Creative"],
+    url: "https://runwayml.com"
+},
 
-  {
-    name:"ElevenLabs",
-    keywords:[
-      "voice","audio","voiceover","voice-over",
-      "narration","dub","dubbing"
+{
+    name: "Midjourney",
+    keywords: [
+        "image","art","creative",
+        "realistic","design",
+        "picture"
     ],
-    description:
-      "AI voice generation, narration and dubbing.",
-    tags:["Voice","Audio","Dubbing"],
-    url:"https://elevenlabs.io"
-  },
+    description: "An AI image generation platform focused on creative and artistic visuals.",
+    tags: ["Images","Art","Creative"],
+    url: "https://www.midjourney.com"
+},
 
-  {
-    name:"Suno",
-    keywords:[
-      "music","song","songs","audio",
-      "music-generation","compose"
+{
+    name: "ElevenLabs",
+    keywords: [
+        "voice","voiceover",
+        "audio","narration",
+        "dubbing"
     ],
-    description:
-      "Create AI-generated music and songs from your ideas.",
-    tags:["Music","Songs","Audio"],
-    url:"https://suno.com"
-  },
+    description: "AI voice technology for narration, voiceovers, dubbing and audio creation.",
+    tags: ["Voice","Audio","Dubbing"],
+    url: "https://elevenlabs.io"
+},
 
-  {
-    name:"GitHub Copilot",
-    keywords:[
-      "code","coding","programming",
-      "developer","debug","software",
-      "website"
+{
+    name: "Suno",
+    keywords: [
+        "music","song",
+        "audio","creative"
     ],
-    description:
-      "AI coding assistance for developers.",
-    tags:["Coding","Programming","Developer"],
-    url:"https://github.com/features/copilot"
-  },
+    description: "An AI music creation platform for generating songs and musical ideas.",
+    tags: ["Music","Songs","Audio"],
+    url: "https://suno.com"
+},
 
-  {
-    name:"Gamma",
-    keywords:[
-      "presentation","presentations",
-      "slides","business","pitch"
+{
+    name: "GitHub Copilot",
+    keywords: [
+        "coding","code",
+        "programming","developer",
+        "debugging","website"
     ],
-    description:
-      "Create presentations and documents with AI.",
-    tags:["Presentation","Business","Slides"],
-    url:"https://gamma.app"
-  },
+    description: "An AI coding assistant that helps developers write and understand code.",
+    tags: ["Coding","Programming","Developer"],
+    url: "https://github.com/features/copilot"
+},
 
-  {
-    name:"Grammarly",
-    keywords:[
-      "grammar","english","correct",
-      "rewrite","professional","writing"
+{
+    name: "Gamma",
+    keywords: [
+        "presentation","slides",
+        "business","design",
+        "document"
     ],
-    description:
-      "Improve grammar, clarity and professional writing.",
-    tags:["Grammar","English","Writing"],
-    url:"https://www.grammarly.com"
-  }
+    description: "An AI tool for creating presentations, documents and visual content quickly.",
+    tags: ["Presentation","Business","Slides"],
+    url: "https://gamma.app"
+}
 
 ];
 
+
+// ==========================================
+// UNDERSTAND USER REQUEST
+// ==========================================
+
 function analyzeRequest(input) {
+
     const text = input.toLowerCase();
 
     const needs = {
@@ -699,7 +637,8 @@ function analyzeRequest(input) {
         experience: null
     };
 
-    // ===== GOALS =====
+
+    // CV
 
     if (
         text.includes("cv") ||
@@ -709,23 +648,34 @@ function analyzeRequest(input) {
         needs.goals.push("cv");
     }
 
+
+    // CAREER / JOB
+
     if (
         text.includes("job") ||
         text.includes("career") ||
         text.includes("emploi") ||
+        text.includes("travail") ||
         text.includes("work")
     ) {
         needs.goals.push("career");
     }
 
+
+    // VIDEO
+
     if (
         text.includes("video") ||
         text.includes("tiktok") ||
         text.includes("youtube") ||
-        text.includes("reel")
+        text.includes("reel") ||
+        text.includes("short")
     ) {
         needs.goals.push("video");
     }
+
+
+    // IMAGE
 
     if (
         text.includes("image") ||
@@ -735,6 +685,9 @@ function analyzeRequest(input) {
         needs.goals.push("image");
     }
 
+
+    // DESIGN
+
     if (
         text.includes("logo") ||
         text.includes("poster") ||
@@ -743,24 +696,35 @@ function analyzeRequest(input) {
         needs.goals.push("design");
     }
 
+
+    // WRITING
+
     if (
         text.includes("write") ||
         text.includes("writing") ||
         text.includes("article") ||
         text.includes("blog") ||
-        text.includes("email")
+        text.includes("email") ||
+        text.includes("rewrite")
     ) {
         needs.goals.push("writing");
     }
+
+
+    // STUDY
 
     if (
         text.includes("study") ||
         text.includes("exam") ||
         text.includes("student") ||
-        text.includes("learn")
+        text.includes("learn") ||
+        text.includes("course")
     ) {
         needs.goals.push("study");
     }
+
+
+    // CODING
 
     if (
         text.includes("code") ||
@@ -772,12 +736,18 @@ function analyzeRequest(input) {
         needs.goals.push("coding");
     }
 
+
+    // PRESENTATION
+
     if (
         text.includes("presentation") ||
         text.includes("slides")
     ) {
         needs.goals.push("presentation");
     }
+
+
+    // MUSIC
 
     if (
         text.includes("music") ||
@@ -786,13 +756,20 @@ function analyzeRequest(input) {
         needs.goals.push("music");
     }
 
+
+    // VOICE
+
     if (
         text.includes("voice") ||
         text.includes("voiceover") ||
-        text.includes("narration")
+        text.includes("narration") ||
+        text.includes("dub")
     ) {
         needs.goals.push("voice");
     }
+
+
+    // RESEARCH
 
     if (
         text.includes("research") ||
@@ -802,19 +779,22 @@ function analyzeRequest(input) {
         needs.goals.push("research");
     }
 
-    // ===== BUDGET =====
+
+    // FREE
 
     if (
         text.includes("free") ||
         text.includes("gratis") ||
         text.includes("gratuit") ||
+        text.includes("gratuitement") ||
         text.includes("no money") ||
         text.includes("without paying")
     ) {
         needs.budget = "free";
     }
 
-    // ===== EXPERIENCE =====
+
+    // BEGINNER
 
     if (
         text.includes("beginner") ||
@@ -826,25 +806,32 @@ function analyzeRequest(input) {
         needs.experience = "beginner";
     }
 
+
+    // PROFESSIONAL
+
     if (
         text.includes("professional") ||
-        text.includes("advanced") ||
-        text.includes("business")
+        text.includes("advanced")
     ) {
         needs.experience = "professional";
     }
 
-    // ===== AUDIENCE =====
+
+    // JOB SEEKER
 
     if (
         text.includes("job") ||
         text.includes("career") ||
         text.includes("emploi") ||
+        text.includes("travail") ||
         text.includes("cv") ||
         text.includes("resume")
     ) {
         needs.audience = "job_seeker";
     }
+
+
+    // STUDENT
 
     if (
         text.includes("student") ||
@@ -855,27 +842,35 @@ function analyzeRequest(input) {
         needs.audience = "student";
     }
 
+
+    // BUSINESS
+
     if (
         text.includes("business") ||
         text.includes("company") ||
-        text.includes("client") ||
-        text.includes("marketing")
+        text.includes("marketing") ||
+        text.includes("client")
     ) {
         needs.audience = "business";
     }
 
+
     return needs;
 }
-
+    // ==========================================
+// MATCHING ENGINE
+// ==========================================
 
 function calculateMatch(tool, needs, input) {
 
     const text = input.toLowerCase();
+
     let score = 0;
 
-    // ==========================================
-    // GOAL MATCHING
-    // ==========================================
+
+    // ======================================
+    // GOAL MATCH
+    // ======================================
 
     needs.goals.forEach(goal => {
 
@@ -885,39 +880,46 @@ function calculateMatch(tool, needs, input) {
 
     });
 
-    // ==========================================
-    // CV + CAREER
-    // ==========================================
+
+    // ======================================
+    // CV
+    // ======================================
 
     if (needs.goals.includes("cv")) {
 
-        if (
-            tool.name === "ChatGPT" ||
-            tool.name === "Canva"
-        ) {
-            score += 25;
+        if (tool.name === "Canva") {
+            score += 35;
+        }
+
+        if (tool.name === "ChatGPT") {
+            score += 30;
         }
 
         if (tool.name === "Grammarly") {
-            score += 15;
+            score += 20;
         }
-
     }
+
+
+    // ======================================
+    // CAREER / JOB
+    // ======================================
 
     if (needs.goals.includes("career")) {
 
         if (
             tool.name === "ChatGPT" ||
-            tool.name === "Canva"
+            tool.name === "Canva" ||
+            tool.name === "Grammarly"
         ) {
-            score += 15;
+            score += 20;
         }
-
     }
 
-    // ==========================================
+
+    // ======================================
     // FREE
-    // ==========================================
+    // ======================================
 
     if (needs.budget === "free") {
 
@@ -930,12 +932,12 @@ function calculateMatch(tool, needs, input) {
         ) {
             score += 15;
         }
-
     }
 
-    // ==========================================
+
+    // ======================================
     // BEGINNER
-    // ==========================================
+    // ======================================
 
     if (needs.experience === "beginner") {
 
@@ -947,29 +949,28 @@ function calculateMatch(tool, needs, input) {
         ) {
             score += 10;
         }
-
     }
 
-    // ==========================================
+
+    // ======================================
     // PROFESSIONAL
-    // ==========================================
+    // ======================================
 
     if (needs.experience === "professional") {
 
         if (
             tool.name === "Canva" ||
             tool.name === "ChatGPT" ||
-            tool.name === "Runway" ||
-            tool.name === "Adobe Firefly"
+            tool.name === "Runway"
         ) {
             score += 10;
         }
-
     }
 
-    // ==========================================
+
+    // ======================================
     // JOB SEEKER
-    // ==========================================
+    // ======================================
 
     if (needs.audience === "job_seeker") {
 
@@ -980,12 +981,12 @@ function calculateMatch(tool, needs, input) {
         ) {
             score += 15;
         }
-
     }
 
-    // ==========================================
+
+    // ======================================
     // DIRECT KEYWORDS
-    // ==========================================
+    // ======================================
 
     tool.keywords.forEach(keyword => {
 
@@ -995,317 +996,284 @@ function calculateMatch(tool, needs, input) {
 
     });
 
-    // ==========================================
-    // LIMIT SCORE
-    // ==========================================
+
+    // ======================================
+    // MAXIMUM SCORE
+    // ======================================
 
     return Math.min(score, 98);
 }
 
 
+// ==========================================
+// EXPLANATION
+// ==========================================
+
 function explainMatch(tool, needs) {
+
 
     if (needs.goals.includes("cv")) {
 
         if (tool.name === "Canva") {
+
             return "Excellent pour créer un CV professionnel avec des modèles et une présentation visuelle.";
+
         }
+
 
         if (tool.name === "ChatGPT") {
+
             return "Excellent pour rédiger, améliorer et adapter le contenu de votre CV à un emploi.";
+
         }
 
+
         if (tool.name === "Grammarly") {
+
             return "Utile pour corriger et améliorer le texte de votre CV.";
+
         }
     }
+
 
     if (needs.goals.includes("video")) {
 
         if (tool.name === "CapCut") {
+
             return "Très pratique pour créer et modifier rapidement des vidéos pour les réseaux sociaux.";
+
         }
 
+
         if (tool.name === "Runway") {
+
             return "Puissant pour générer et modifier des vidéos avec l'intelligence artificielle.";
+
         }
     }
+
 
     if (needs.goals.includes("study")) {
 
         if (tool.name === "NotebookLM") {
+
             return "Très utile pour étudier à partir de vos documents et obtenir des explications.";
+
         }
 
+
         if (tool.name === "ChatGPT") {
+
             return "Utile pour expliquer les cours, créer des exercices et préparer un examen.";
+
         }
     }
 
+
+    if (needs.goals.includes("image")) {
+
+        if (tool.name === "Midjourney") {
+
+            return "Excellent pour générer des images créatives avec l'intelligence artificielle.";
+
+        }
+    }
+
+
+    if (needs.goals.includes("coding")) {
+
+        if (tool.name === "GitHub Copilot") {
+
+            return "Un assistant spécialisé pour écrire, comprendre et améliorer du code.";
+
+        }
+
+
+        if (tool.name === "ChatGPT") {
+
+            return "Utile pour écrire du code, expliquer les erreurs et résoudre des problèmes.";
+
+        }
+    }
+
+
+    if (needs.goals.includes("presentation")) {
+
+        if (tool.name === "Gamma") {
+
+            return "Conçu pour créer rapidement des présentations et des documents visuels.";
+
+        }
+
+
+        if (tool.name === "Canva") {
+
+            return "Très pratique pour créer des présentations visuellement professionnelles.";
+
+        }
+    }
+
+
     return "Cet outil correspond à plusieurs éléments de votre demande.";
-  }
+}
+
+
+// ==========================================
+// FIND AI
+// ==========================================
 
 function findAI() {
 
-  const input =
-    document
-      .getElementById("userInput")
-      .value
-      .trim();
+    const input = document.getElementById("userInput").value.trim();
 
 
-  if (!input) {
+    // Empty request
 
-    alert(
-      "Tell us what you want AI to help you with."
-    );
+    if (!input) {
 
-    return;
+        alert("Please tell us what you want AI to help you with.");
 
-  }
+        return;
+    }
 
 
-  /*
-    Understand the request
-  */
+    const needs = analyzeRequest(input);
 
-  const needs =
-    analyzeRequest(input);
 
+    const scoredTools = tools.map(tool => {
 
-  /*
-    Calculate every tool
-  */
+        return {
 
-  const results = tools
-    .map(tool => {
+            tool: tool,
 
-      const score =
-        calculateMatch(
-          tool,
-          needs,
-          input
-        );
+            score: calculateMatch(tool, needs, input)
 
-      return {
+        };
 
-        ...tool,
+    });
 
-        score: score,
 
-        reason:
-          explainMatch(
-            tool,
-            needs
-          )
+    // Sort from highest to lowest
 
-      };
+    scoredTools.sort((a, b) => b.score - a.score);
 
-    })
 
+    // Take only relevant tools
 
-    /*
-      Remove tools with zero match
-    */
+    let results = scoredTools.filter(item => item.score > 0);
 
-    .filter(tool => tool.score > 0)
 
+    // Maximum 5 results
 
-    /*
-      Highest match first
-    */
+    results = results.slice(0, 5);
 
-    .sort(
-      (a,b) =>
-        b.score - a.score
-    )
 
+    const resultsList = document.getElementById("resultsList");
 
-    /*
-      Only show the best 5
-    */
+    resultsList.innerHTML = "";
 
-    .slice(0,5);
 
+    results.forEach(item => {
 
-  const resultSection =
-    document.getElementById(
-      "results"
-    );
+        const tool = item.tool;
 
+        const card = document.createElement("div");
 
-  const resultList =
-    document.getElementById(
-      "resultList"
-    );
+        card.className = "result-card";
 
 
-  const understanding =
-    document.getElementById(
-      "understanding"
-    );
+        let tagsHTML = "";
 
+        tool.tags.forEach(tag => {
 
-  resultSection.style.display =
-    "block";
+            tagsHTML += `<span class="tag">${tag}</span>`;
 
+        });
 
-  /*
-    Tell the user what we understood
-  */
 
-  let understandingText =
-    "We analyzed your request";
+        card.innerHTML = `
 
+            <div class="result-top">
 
-  if (needs.goal.length > 0) {
+                <h3>${tool.name}</h3>
 
-    understandingText +=
-      " and detected: " +
-      needs.goal.join(", ");
-
-  }
-
-
-  if (needs.free) {
-
-    understandingText +=
-      " • Free/low-cost";
-
-  }
-
-
-  understanding.innerText =
-    understandingText;
-
-
-  /*
-    No results
-  */
-
-  if (results.length === 0) {
-
-    resultList.innerHTML = `
-
-      <div class="tool-card">
-
-        <div class="tool-name">
-          We couldn't find a strong match yet.
-        </div>
-
-        <p>
-          Try describing your goal more clearly.
-        </p>
-
-        <p>
-          Example:
-          "I need a free AI to create a CV for a job."
-        </p>
-
-      </div>
-
-    `;
-
-  }
-
-
-  /*
-    Display results
-  */
-
-  else {
-
-    resultList.innerHTML =
-      results
-        .map(tool => `
-
-          <div class="tool-card">
-
-            <div class="tool-top">
-
-              <div class="tool-name">
-                ${tool.name}
-              </div>
-
-              <div class="match">
-                ${tool.score}% Match
-              </div>
+                <div class="match">
+                    ${item.score}% Match
+                </div>
 
             </div>
 
-
             <p>
-              ${tool.description}
+                ${tool.description}
             </p>
-
 
             <div class="tags">
+                ${tagsHTML}
+            </div>
 
-              ${
-                tool.tags
-                  .map(tag =>
-                    `<span class="tag">${tag}</span>`
-                  )
-                  .join("")
-              }
+            <div class="why">
+
+                <strong>Why it matches:</strong><br>
+
+                ${explainMatch(tool, needs)}
 
             </div>
 
-
-            <p>
-              <strong>Why it matches:</strong>
-              ${tool.reason}
-            </p>
-
-
             <a
-              class="try-button"
-              href="${tool.url}"
-              target="_blank"
-              rel="noopener"
+                class="try-btn"
+                href="${tool.url}"
+                target="_blank"
+                rel="noopener"
             >
-              TRY TOOL →
+                TRY TOOL →
             </a>
 
-          </div>
-
-        `)
-        .join("");
-
-  }
+        `;
 
 
-  /*
-    Scroll to results
-  */
+        resultsList.appendChild(card);
 
-  resultSection.scrollIntoView({
+    });
 
-    behavior:"smooth"
 
-  });
+    // Show results
+
+    const resultsSection = document.getElementById("results");
+
+    resultsSection.style.display = "block";
+
+
+    document.getElementById("resultDescription").textContent =
+        `We analyzed your request and found ${results.length} matching AI tools.`;
+
+
+    // Scroll to results
+
+    resultsSection.scrollIntoView({
+        behavior: "smooth"
+    });
 
 }
 
 
-/*
-  Allow ENTER key
-*/
+// ==========================================
+// ENTER KEY
+// ==========================================
 
-document
-  .getElementById("userInput")
-  .addEventListener(
+document.getElementById("userInput").addEventListener(
     "keydown",
     function(event) {
 
-      if (event.key === "Enter") {
+        if (event.key === "Enter") {
 
-        findAI();
+            findAI();
 
-      }
+        }
 
     }
-  );
-  </script>
+);
+
+</script>
+
 </body>
 </html>
