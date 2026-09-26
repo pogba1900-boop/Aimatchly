@@ -688,296 +688,362 @@ const tools = [
   }
 
 ];
+
 function analyzeRequest(input) {
+    const text = input.toLowerCase();
 
+    const needs = {
+        goals: [],
+        budget: null,
+        audience: null,
+        experience: null
+    };
 
-  for (const goal in goals) {
+    // ===== GOALS =====
 
-    for (const keyword of goals[goal]) {
-
-      if (text.includes(keyword)) {
-
-        if (!needs.goal.includes(goal)) {
-
-          needs.goal.push(goal);
-
-        }
-
-      }
-
+    if (
+        text.includes("cv") ||
+        text.includes("resume") ||
+        text.includes("curriculum vitae")
+    ) {
+        needs.goals.push("cv");
     }
 
-  }
+    if (
+        text.includes("job") ||
+        text.includes("career") ||
+        text.includes("emploi") ||
+        text.includes("work")
+    ) {
+        needs.goals.push("career");
+    }
 
+    if (
+        text.includes("video") ||
+        text.includes("tiktok") ||
+        text.includes("youtube") ||
+        text.includes("reel")
+    ) {
+        needs.goals.push("video");
+    }
 
-  if (
-    text.includes("free") ||
-    text.includes("no money") ||
-    text.includes("without paying") ||
-    text.includes("gratis")
-  ) {
+    if (
+        text.includes("image") ||
+        text.includes("picture") ||
+        text.includes("photo")
+    ) {
+        needs.goals.push("image");
+    }
 
-    needs.free = true;
+    if (
+        text.includes("logo") ||
+        text.includes("poster") ||
+        text.includes("design")
+    ) {
+        needs.goals.push("design");
+    }
 
-  }
+    if (
+        text.includes("write") ||
+        text.includes("writing") ||
+        text.includes("article") ||
+        text.includes("blog") ||
+        text.includes("email")
+    ) {
+        needs.goals.push("writing");
+    }
 
+    if (
+        text.includes("study") ||
+        text.includes("exam") ||
+        text.includes("student") ||
+        text.includes("learn")
+    ) {
+        needs.goals.push("study");
+    }
 
-  if (
-    text.includes("beginner") ||
-    text.includes("easy") ||
-    text.includes("simple") ||
-    text.includes("without experience")
-  ) {
+    if (
+        text.includes("code") ||
+        text.includes("coding") ||
+        text.includes("program") ||
+        text.includes("website") ||
+        text.includes("app")
+    ) {
+        needs.goals.push("coding");
+    }
 
-    needs.beginner = true;
+    if (
+        text.includes("presentation") ||
+        text.includes("slides")
+    ) {
+        needs.goals.push("presentation");
+    }
 
-  }
+    if (
+        text.includes("music") ||
+        text.includes("song")
+    ) {
+        needs.goals.push("music");
+    }
 
+    if (
+        text.includes("voice") ||
+        text.includes("voiceover") ||
+        text.includes("narration")
+    ) {
+        needs.goals.push("voice");
+    }
 
-  if (
-    text.includes("professional") ||
-    text.includes("advanced") ||
-    text.includes("business")
-  ) {
+    if (
+        text.includes("research") ||
+        text.includes("sources") ||
+        text.includes("information")
+    ) {
+        needs.goals.push("research");
+    }
 
-    needs.professional = true;
+    // ===== BUDGET =====
 
-  }
+    if (
+        text.includes("free") ||
+        text.includes("gratis") ||
+        text.includes("gratuit") ||
+        text.includes("no money") ||
+        text.includes("without paying")
+    ) {
+        needs.budget = "free";
+    }
 
+    // ===== EXPERIENCE =====
 
-  return needs;
+    if (
+        text.includes("beginner") ||
+        text.includes("easy") ||
+        text.includes("simple") ||
+        text.includes("without experience") ||
+        text.includes("no experience")
+    ) {
+        needs.experience = "beginner";
+    }
 
+    if (
+        text.includes("professional") ||
+        text.includes("advanced") ||
+        text.includes("business")
+    ) {
+        needs.experience = "professional";
+    }
+
+    // ===== AUDIENCE =====
+
+    if (
+        text.includes("job") ||
+        text.includes("career") ||
+        text.includes("emploi") ||
+        text.includes("cv") ||
+        text.includes("resume")
+    ) {
+        needs.audience = "job_seeker";
+    }
+
+    if (
+        text.includes("student") ||
+        text.includes("university") ||
+        text.includes("school") ||
+        text.includes("exam")
+    ) {
+        needs.audience = "student";
+    }
+
+    if (
+        text.includes("business") ||
+        text.includes("company") ||
+        text.includes("client") ||
+        text.includes("marketing")
+    ) {
+        needs.audience = "business";
+    }
+
+    return needs;
 }
 
 
 function calculateMatch(tool, needs, input) {
 
-  let score = 0;
+    const text = input.toLowerCase();
+    let score = 0;
 
-  const text = input.toLowerCase();
+    // ==========================================
+    // GOAL MATCHING
+    // ==========================================
 
+    needs.goals.forEach(goal => {
 
-  /*
-    GOAL MATCH
-  */
-
-  needs.goal.forEach(goal => {
-
-    const goalKeywords = {
-
-      cv: [
-        "cv",
-        "resume",
-        "job",
-        "career"
-      ],
-
-      video: [
-        "video",
-        "youtube",
-        "tiktok",
-        "short"
-      ],
-
-      image: [
-        "image",
-        "picture",
-        "photo",
-        "art"
-      ],
-
-      writing: [
-        "write",
-        "writing",
-        "blog",
-        "article",
-        "email"
-      ],
-
-      study: [
-        "study",
-        "exam",
-        "learn",
-        "student",
-        "pdf",
-        "notes"
-      ],
-
-      coding: [
-        "code",
-        "coding",
-        "programming",
-        "developer",
-        "website",
-        "app"
-      ],
-
-      presentation: [
-        "presentation",
-        "slides",
-        "pitch"
-      ],
-
-      music: [
-        "music",
-        "song",
-        "audio"
-      ],
-
-      voice: [
-        "voice",
-        "voiceover",
-        "narration",
-        "dub"
-      ],
-
-      research: [
-        "research",
-        "sources",
-        "facts",
-        "search"
-      ],
-
-      design: [
-        "design",
-        "logo",
-        "poster",
-        "thumbnail"
-      ]
-
-    };
-
-
-    const keywords = goalKeywords[goal] || [];
-
-
-    keywords.forEach(keyword => {
-
-      if (tool.keywords.includes(keyword)) {
-
-        score += 15;
-
-      }
+        if (tool.keywords.includes(goal)) {
+            score += 30;
+        }
 
     });
 
-  });
+    // ==========================================
+    // CV + CAREER
+    // ==========================================
 
+    if (needs.goals.includes("cv")) {
 
-  /*
-    DIRECT KEYWORD MATCH
-  */
+        if (
+            tool.name === "ChatGPT" ||
+            tool.name === "Canva"
+        ) {
+            score += 25;
+        }
 
-  tool.keywords.forEach(keyword => {
-
-    if (text.includes(keyword)) {
-
-      score += 5;
-
-    }
-
-  });
-
-
-  /*
-    BEGINNER / EASY
-  */
-
-  if (needs.beginner) {
-
-    if (
-      tool.name === "Canva" ||
-      tool.name === "ChatGPT" ||
-      tool.name === "CapCut" ||
-      tool.name === "Gamma"
-    ) {
-
-      score += 10;
+        if (tool.name === "Grammarly") {
+            score += 15;
+        }
 
     }
 
-  }
+    if (needs.goals.includes("career")) {
 
-
-  /*
-    FREE REQUEST
-  */
-
-  if (needs.free) {
-
-    /*
-      Temporary MVP rule.
-
-      Pricing changes over time.
-      We will later add verified pricing
-      to every tool.
-    */
-
-    if (
-      tool.name === "ChatGPT" ||
-      tool.name === "Canva" ||
-      tool.name === "CapCut" ||
-      tool.name === "Grammarly" ||
-      tool.name === "NotebookLM"
-    ) {
-
-      score += 10;
+        if (
+            tool.name === "ChatGPT" ||
+            tool.name === "Canva"
+        ) {
+            score += 15;
+        }
 
     }
 
-  }
+    // ==========================================
+    // FREE
+    // ==========================================
 
+    if (needs.budget === "free") {
 
-  return Math.min(score, 98);
+        if (
+            tool.name === "ChatGPT" ||
+            tool.name === "Canva" ||
+            tool.name === "CapCut" ||
+            tool.name === "Grammarly" ||
+            tool.name === "NotebookLM"
+        ) {
+            score += 15;
+        }
 
+    }
+
+    // ==========================================
+    // BEGINNER
+    // ==========================================
+
+    if (needs.experience === "beginner") {
+
+        if (
+            tool.name === "Canva" ||
+            tool.name === "ChatGPT" ||
+            tool.name === "CapCut" ||
+            tool.name === "Gamma"
+        ) {
+            score += 10;
+        }
+
+    }
+
+    // ==========================================
+    // PROFESSIONAL
+    // ==========================================
+
+    if (needs.experience === "professional") {
+
+        if (
+            tool.name === "Canva" ||
+            tool.name === "ChatGPT" ||
+            tool.name === "Runway" ||
+            tool.name === "Adobe Firefly"
+        ) {
+            score += 10;
+        }
+
+    }
+
+    // ==========================================
+    // JOB SEEKER
+    // ==========================================
+
+    if (needs.audience === "job_seeker") {
+
+        if (
+            tool.name === "ChatGPT" ||
+            tool.name === "Canva" ||
+            tool.name === "Grammarly"
+        ) {
+            score += 15;
+        }
+
+    }
+
+    // ==========================================
+    // DIRECT KEYWORDS
+    // ==========================================
+
+    tool.keywords.forEach(keyword => {
+
+        if (text.includes(keyword)) {
+            score += 5;
+        }
+
+    });
+
+    // ==========================================
+    // LIMIT SCORE
+    // ==========================================
+
+    return Math.min(score, 98);
 }
 
 
 function explainMatch(tool, needs) {
 
-  const reasons = [];
+    if (needs.goals.includes("cv")) {
 
+        if (tool.name === "Canva") {
+            return "Excellent pour créer un CV professionnel avec des modèles et une présentation visuelle.";
+        }
 
-  if (needs.goal.length > 0) {
+        if (tool.name === "ChatGPT") {
+            return "Excellent pour rédiger, améliorer et adapter le contenu de votre CV à un emploi.";
+        }
 
-    reasons.push(
-      "Matches your goal"
-    );
+        if (tool.name === "Grammarly") {
+            return "Utile pour corriger et améliorer le texte de votre CV.";
+        }
+    }
 
+    if (needs.goals.includes("video")) {
+
+        if (tool.name === "CapCut") {
+            return "Très pratique pour créer et modifier rapidement des vidéos pour les réseaux sociaux.";
+        }
+
+        if (tool.name === "Runway") {
+            return "Puissant pour générer et modifier des vidéos avec l'intelligence artificielle.";
+        }
+    }
+
+    if (needs.goals.includes("study")) {
+
+        if (tool.name === "NotebookLM") {
+            return "Très utile pour étudier à partir de vos documents et obtenir des explications.";
+        }
+
+        if (tool.name === "ChatGPT") {
+            return "Utile pour expliquer les cours, créer des exercices et préparer un examen.";
+        }
+    }
+
+    return "Cet outil correspond à plusieurs éléments de votre demande.";
   }
-
-
-  if (needs.free) {
-
-    reasons.push(
-      "Suitable for a free/low-cost request"
-    );
-
-  }
-
-
-  if (needs.beginner) {
-
-    reasons.push(
-      "Good option for beginners"
-    );
-
-  }
-
-
-  if (reasons.length === 0) {
-
-    reasons.push(
-      "Matches keywords in your request"
-    );
-
-  }
-
-
-  return reasons.join(" • ");
-
-}
-
 
 function findAI() {
 
