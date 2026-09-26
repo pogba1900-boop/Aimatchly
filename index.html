@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -275,4 +276,1067 @@ nav a{
   margin:12px 0;
 }
 
-.tag
+.tag{
+  background:#f1f1f5;
+  color:#666;
+  padding:5px 9px;
+  border-radius:6px;
+  font-size:12px;
+}
+
+.try-button{
+  display:inline-block;
+  margin-top:8px;
+  background:#635bff;
+  color:white;
+  text-decoration:none;
+  padding:11px 17px;
+  border-radius:9px;
+  font-size:13px;
+  font-weight:bold;
+}
+
+footer{
+  background:#171923;
+  color:white;
+  text-align:center;
+  padding:40px 20px;
+  margin-top:30px;
+}
+
+footer p{
+  color:#aaa;
+  margin-top:8px;
+}
+
+@media(max-width:700px){
+
+  header{
+    padding:15px 20px;
+  }
+
+  nav{
+    display:none;
+  }
+
+  .hero{
+    padding:55px 18px 45px;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  .search-box{
+    flex-direction:column;
+    border:0;
+    box-shadow:none;
+    gap:9px;
+  }
+
+  .search-box input{
+    border:1px solid #ddd;
+    border-radius:11px;
+    background:white;
+  }
+
+  .search-box button{
+    height:52px;
+  }
+
+  .steps{
+    grid-template-columns:1fr;
+  }
+
+  .categories{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .tool-top{
+    align-items:flex-start;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    AI<span>Matchly</span>
+  </div>
+
+  <nav>
+    <a href="#">AI Tools</a>
+    <a href="#">Categories</a>
+    <a href="#">Guides</a>
+    <a href="#">About</a>
+  </nav>
+
+</header>
+
+
+<section class="hero">
+
+  <div class="badge">
+    ✨ AI Tool Matchmaker
+  </div>
+
+  <h1>
+    Find the <span>right AI</span> for what you want to do.
+  </h1>
+
+  <p>
+    Tell us what you want to accomplish.
+    AIMatchly finds the AI tools that fit your goal.
+  </p>
+
+  <div class="search-container">
+
+    <div class="search-box">
+
+      <input
+        id="userInput"
+        type="text"
+        placeholder="What do you want AI to help you with?"
+      >
+
+      <button onclick="findAI()">
+        FIND MY AI →
+      </button>
+
+    </div>
+
+    <div class="examples">
+      Try: Create a CV · Make a video · Study for an exam · Create a logo
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="results">
+
+  <div class="results-header">
+
+    <h2>Your AI matches</h2>
+
+    <p id="understanding"></p>
+
+  </div>
+
+  <div id="resultList"></div>
+
+</section>
+
+
+<section class="container">
+
+  <div class="section-title">
+
+    <h2>How AIMatchly works</h2>
+
+    <p>Finding an AI tool shouldn't be complicated.</p>
+
+  </div>
+
+  <div class="steps">
+
+    <div class="step">
+
+      <div class="step-number">1</div>
+
+      <h3>Tell us what you need</h3>
+
+      <p>
+        Describe your goal in your own words.
+      </p>
+
+    </div>
+
+    <div class="step">
+
+      <div class="step-number">2</div>
+
+      <h3>We match your needs</h3>
+
+      <p>
+        Our matching engine analyzes your request.
+      </p>
+
+    </div>
+
+    <div class="step">
+
+      <div class="step-number">3</div>
+
+      <h3>Choose your tool</h3>
+
+      <p>
+        Compare the tools that fit your needs.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="container">
+
+  <div class="section-title">
+
+    <h2>Explore AI categories</h2>
+
+    <p>Find tools for almost anything.</p>
+
+  </div>
+
+  <div class="categories">
+
+    <div class="category">🎬 Video</div>
+    <div class="category">🖼️ Images</div>
+    <div class="category">✍️ Writing</div>
+    <div class="category">💼 CV & Career</div>
+    <div class="category">📚 Study</div>
+    <div class="category">💻 Coding</div>
+    <div class="category">🎵 Music</div>
+    <div class="category">📊 Business</div>
+
+  </div>
+
+</section>
+
+
+<footer>
+
+  <strong>AIMatchly</strong>
+
+  <p>
+    Find the right AI for what you want to do.
+  </p>
+
+</footer>
+
+
+<script>
+
+/*
+  AIMatchly V2
+  Matching engine + AI tools database
+*/
+
+const tools = [
+
+  {
+    name:"ChatGPT",
+    keywords:[
+      "cv","resume","writing","write","blog",
+      "study","learn","code","coding","research",
+      "email","interview","translate","translation",
+      "explain","ideas","business"
+    ],
+    description:
+      "A versatile AI assistant for writing, learning, coding, research and everyday tasks.",
+    tags:["Writing","Study","Coding","Career"],
+    url:"https://chatgpt.com"
+  },
+
+  {
+    name:"Canva",
+    keywords:[
+      "cv","resume","design","logo","poster",
+      "presentation","instagram","facebook",
+      "social","image","graphics","thumbnail"
+    ],
+    description:
+      "Create professional designs, CVs, presentations, social media graphics and more.",
+    tags:["Design","CV","Social Media","Presentation"],
+    url:"https://www.canva.com"
+  },
+
+  {
+    name:"Perplexity",
+    keywords:[
+      "research","sources","source","search",
+      "facts","information","study","researching"
+    ],
+    description:
+      "AI-powered search and research with web sources.",
+    tags:["Research","Search","Sources"],
+    url:"https://www.perplexity.ai"
+  },
+
+  {
+    name:"NotebookLM",
+    keywords:[
+      "pdf","document","documents","study",
+      "notes","summarize","summary","exam",
+      "learn"
+    ],
+    description:
+      "Study and research using your own documents and sources.",
+    tags:["PDF","Study","Research"],
+    url:"https://notebooklm.google.com"
+  },
+
+  {
+    name:"Midjourney",
+    keywords:[
+      "image","images","art","artistic",
+      "realistic","picture","pictures",
+      "illustration","creative"
+    ],
+    description:
+      "Create AI-generated images and artwork from your ideas.",
+    tags:["Images","Art","Creative"],
+    url:"https://www.midjourney.com"
+  },
+
+  {
+    name:"Runway",
+    keywords:[
+      "video","videos","film","movie",
+      "text-to-video","creator","generation"
+    ],
+    description:
+      "AI tools for video generation and creative video production.",
+    tags:["Video","Generation","Creator"],
+    url:"https://runwayml.com"
+  },
+
+  {
+    name:"CapCut",
+    keywords:[
+      "video","tiktok","youtube","shorts",
+      "edit","editing","subtitles","clips"
+    ],
+    description:
+      "Video editing tools for creators and social media.",
+    tags:["Video","Editing","Social"],
+    url:"https://www.capcut.com"
+  },
+
+  {
+    name:"ElevenLabs",
+    keywords:[
+      "voice","audio","voiceover","voice-over",
+      "narration","dub","dubbing"
+    ],
+    description:
+      "AI voice generation, narration and dubbing.",
+    tags:["Voice","Audio","Dubbing"],
+    url:"https://elevenlabs.io"
+  },
+
+  {
+    name:"Suno",
+    keywords:[
+      "music","song","songs","audio",
+      "music-generation","compose"
+    ],
+    description:
+      "Create AI-generated music and songs from your ideas.",
+    tags:["Music","Songs","Audio"],
+    url:"https://suno.com"
+  },
+
+  {
+    name:"GitHub Copilot",
+    keywords:[
+      "code","coding","programming",
+      "developer","debug","software",
+      "website"
+    ],
+    description:
+      "AI coding assistance for developers.",
+    tags:["Coding","Programming","Developer"],
+    url:"https://github.com/features/copilot"
+  },
+
+  {
+    name:"Gamma",
+    keywords:[
+      "presentation","presentations",
+      "slides","business","pitch"
+    ],
+    description:
+      "Create presentations and documents with AI.",
+    tags:["Presentation","Business","Slides"],
+    url:"https://gamma.app"
+  },
+
+  {
+    name:"Grammarly",
+    keywords:[
+      "grammar","english","correct",
+      "rewrite","professional","writing"
+    ],
+    description:
+      "Improve grammar, clarity and professional writing.",
+    tags:["Grammar","English","Writing"],
+    url:"https://www.grammarly.com"
+  }
+
+];
+  function analyzeRequest(input) {
+
+  const text = input.toLowerCase();
+
+  const needs = {
+    goal: [],
+    free: false,
+    beginner: false,
+    professional: false
+  };
+
+  const goals = {
+
+    cv: [
+      "cv",
+      "resume",
+      "curriculum",
+      "job",
+      "career"
+    ],
+
+    video: [
+      "video",
+      "youtube",
+      "tiktok",
+      "short",
+      "film"
+    ],
+
+    image: [
+      "image",
+      "picture",
+      "photo",
+      "art",
+      "illustration"
+    ],
+
+    writing: [
+      "write",
+      "writing",
+      "blog",
+      "article",
+      "email",
+      "text"
+    ],
+
+    study: [
+      "study",
+      "exam",
+      "learn",
+      "school",
+      "student",
+      "pdf",
+      "notes"
+    ],
+
+    coding: [
+      "code",
+      "coding",
+      "programming",
+      "website",
+      "app",
+      "developer"
+    ],
+
+    presentation: [
+      "presentation",
+      "slides",
+      "pitch"
+    ],
+
+    music: [
+      "music",
+      "song",
+      "songs"
+    ],
+
+    voice: [
+      "voice",
+      "voiceover",
+      "narration",
+      "dub",
+      "dubbing"
+    ],
+
+    research: [
+      "research",
+      "sources",
+      "facts",
+      "search"
+    ],
+
+    design: [
+      "design",
+      "logo",
+      "poster",
+      "thumbnail",
+      "graphics"
+    ]
+
+  };
+
+
+  for (const goal in goals) {
+
+    for (const keyword of goals[goal]) {
+
+      if (text.includes(keyword)) {
+
+        if (!needs.goal.includes(goal)) {
+
+          needs.goal.push(goal);
+
+        }
+
+      }
+
+    }
+
+  }
+
+
+  if (
+    text.includes("free") ||
+    text.includes("no money") ||
+    text.includes("without paying") ||
+    text.includes("gratis")
+  ) {
+
+    needs.free = true;
+
+  }
+
+
+  if (
+    text.includes("beginner") ||
+    text.includes("easy") ||
+    text.includes("simple") ||
+    text.includes("without experience")
+  ) {
+
+    needs.beginner = true;
+
+  }
+
+
+  if (
+    text.includes("professional") ||
+    text.includes("advanced") ||
+    text.includes("business")
+  ) {
+
+    needs.professional = true;
+
+  }
+
+
+  return needs;
+
+}
+
+
+function calculateMatch(tool, needs, input) {
+
+  let score = 0;
+
+  const text = input.toLowerCase();
+
+
+  /*
+    GOAL MATCH
+  */
+
+  needs.goal.forEach(goal => {
+
+    const goalKeywords = {
+
+      cv: [
+        "cv",
+        "resume",
+        "job",
+        "career"
+      ],
+
+      video: [
+        "video",
+        "youtube",
+        "tiktok",
+        "short"
+      ],
+
+      image: [
+        "image",
+        "picture",
+        "photo",
+        "art"
+      ],
+
+      writing: [
+        "write",
+        "writing",
+        "blog",
+        "article",
+        "email"
+      ],
+
+      study: [
+        "study",
+        "exam",
+        "learn",
+        "student",
+        "pdf",
+        "notes"
+      ],
+
+      coding: [
+        "code",
+        "coding",
+        "programming",
+        "developer",
+        "website",
+        "app"
+      ],
+
+      presentation: [
+        "presentation",
+        "slides",
+        "pitch"
+      ],
+
+      music: [
+        "music",
+        "song",
+        "audio"
+      ],
+
+      voice: [
+        "voice",
+        "voiceover",
+        "narration",
+        "dub"
+      ],
+
+      research: [
+        "research",
+        "sources",
+        "facts",
+        "search"
+      ],
+
+      design: [
+        "design",
+        "logo",
+        "poster",
+        "thumbnail"
+      ]
+
+    };
+
+
+    const keywords = goalKeywords[goal] || [];
+
+
+    keywords.forEach(keyword => {
+
+      if (tool.keywords.includes(keyword)) {
+
+        score += 15;
+
+      }
+
+    });
+
+  });
+
+
+  /*
+    DIRECT KEYWORD MATCH
+  */
+
+  tool.keywords.forEach(keyword => {
+
+    if (text.includes(keyword)) {
+
+      score += 5;
+
+    }
+
+  });
+
+
+  /*
+    BEGINNER / EASY
+  */
+
+  if (needs.beginner) {
+
+    if (
+      tool.name === "Canva" ||
+      tool.name === "ChatGPT" ||
+      tool.name === "CapCut" ||
+      tool.name === "Gamma"
+    ) {
+
+      score += 10;
+
+    }
+
+  }
+
+
+  /*
+    FREE REQUEST
+  */
+
+  if (needs.free) {
+
+    /*
+      Temporary MVP rule.
+
+      Pricing changes over time.
+      We will later add verified pricing
+      to every tool.
+    */
+
+    if (
+      tool.name === "ChatGPT" ||
+      tool.name === "Canva" ||
+      tool.name === "CapCut" ||
+      tool.name === "Grammarly" ||
+      tool.name === "NotebookLM"
+    ) {
+
+      score += 10;
+
+    }
+
+  }
+
+
+  return Math.min(score, 98);
+
+}
+
+
+function explainMatch(tool, needs) {
+
+  const reasons = [];
+
+
+  if (needs.goal.length > 0) {
+
+    reasons.push(
+      "Matches your goal"
+    );
+
+  }
+
+
+  if (needs.free) {
+
+    reasons.push(
+      "Suitable for a free/low-cost request"
+    );
+
+  }
+
+
+  if (needs.beginner) {
+
+    reasons.push(
+      "Good option for beginners"
+    );
+
+  }
+
+
+  if (reasons.length === 0) {
+
+    reasons.push(
+      "Matches keywords in your request"
+    );
+
+  }
+
+
+  return reasons.join(" • ");
+
+}
+
+
+function findAI() {
+
+  const input =
+    document
+      .getElementById("userInput")
+      .value
+      .trim();
+
+
+  if (!input) {
+
+    alert(
+      "Tell us what you want AI to help you with."
+    );
+
+    return;
+
+  }
+
+
+  /*
+    Understand the request
+  */
+
+  const needs =
+    analyzeRequest(input);
+
+
+  /*
+    Calculate every tool
+  */
+
+  const results = tools
+    .map(tool => {
+
+      const score =
+        calculateMatch(
+          tool,
+          needs,
+          input
+        );
+
+      return {
+
+        ...tool,
+
+        score: score,
+
+        reason:
+          explainMatch(
+            tool,
+            needs
+          )
+
+      };
+
+    })
+
+
+    /*
+      Remove tools with zero match
+    */
+
+    .filter(tool => tool.score > 0)
+
+
+    /*
+      Highest match first
+    */
+
+    .sort(
+      (a,b) =>
+        b.score - a.score
+    )
+
+
+    /*
+      Only show the best 5
+    */
+
+    .slice(0,5);
+
+
+  const resultSection =
+    document.getElementById(
+      "results"
+    );
+
+
+  const resultList =
+    document.getElementById(
+      "resultList"
+    );
+
+
+  const understanding =
+    document.getElementById(
+      "understanding"
+    );
+
+
+  resultSection.style.display =
+    "block";
+
+
+  /*
+    Tell the user what we understood
+  */
+
+  let understandingText =
+    "We analyzed your request";
+
+
+  if (needs.goal.length > 0) {
+
+    understandingText +=
+      " and detected: " +
+      needs.goal.join(", ");
+
+  }
+
+
+  if (needs.free) {
+
+    understandingText +=
+      " • Free/low-cost";
+
+  }
+
+
+  understanding.innerText =
+    understandingText;
+
+
+  /*
+    No results
+  */
+
+  if (results.length === 0) {
+
+    resultList.innerHTML = `
+
+      <div class="tool-card">
+
+        <div class="tool-name">
+          We couldn't find a strong match yet.
+        </div>
+
+        <p>
+          Try describing your goal more clearly.
+        </p>
+
+        <p>
+          Example:
+          "I need a free AI to create a CV for a job."
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /*
+    Display results
+  */
+
+  else {
+
+    resultList.innerHTML =
+      results
+        .map(tool => `
+
+          <div class="tool-card">
+
+            <div class="tool-top">
+
+              <div class="tool-name">
+                ${tool.name}
+              </div>
+
+              <div class="match">
+                ${tool.score}% Match
+              </div>
+
+            </div>
+
+
+            <p>
+              ${tool.description}
+            </p>
+
+
+            <div class="tags">
+
+              ${
+                tool.tags
+                  .map(tag =>
+                    `<span class="tag">${tag}</span>`
+                  )
+                  .join("")
+              }
+
+            </div>
+
+
+            <p>
+              <strong>Why it matches:</strong>
+              ${tool.reason}
+            </p>
+
+
+            <a
+              class="try-button"
+              href="${tool.url}"
+              target="_blank"
+              rel="noopener"
+            >
+              TRY TOOL →
+            </a>
+
+          </div>
+
+        `)
+        .join("");
+
+  }
+
+
+  /*
+    Scroll to results
+  */
+
+  resultSection.scrollIntoView({
+
+    behavior:"smooth"
+
+  });
+
+}
+
+
+/*
+  Allow ENTER key
+*/
+
+document
+  .getElementById("userInput")
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+      if (event.key === "Enter") {
+
+        findAI();
+
+      }
+
+    }
+  );
