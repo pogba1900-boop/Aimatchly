@@ -768,7 +768,6 @@ const tools = [
 // ==========================================
 // UNDERSTAND USER REQUEST
 // ==========================================
-
 function analyzeRequest(input) {
 
     const text = input.toLowerCase();
@@ -777,12 +776,12 @@ function analyzeRequest(input) {
         goals: [],
         budget: null,
         audience: null,
-        experience: null
+        experience: null,
+        noCode: false
     };
 
 
     // CV
-
     if (
         text.includes("cv") ||
         text.includes("resume") ||
@@ -793,7 +792,6 @@ function analyzeRequest(input) {
 
 
     // CAREER / JOB
-
     if (
         text.includes("job") ||
         text.includes("career") ||
@@ -806,7 +804,6 @@ function analyzeRequest(input) {
 
 
     // VIDEO
-
     if (
         text.includes("video") ||
         text.includes("tiktok") ||
@@ -819,7 +816,6 @@ function analyzeRequest(input) {
 
 
     // IMAGE
-
     if (
         text.includes("image") ||
         text.includes("picture") ||
@@ -830,7 +826,6 @@ function analyzeRequest(input) {
 
 
     // DESIGN
-
     if (
         text.includes("logo") ||
         text.includes("poster") ||
@@ -841,7 +836,6 @@ function analyzeRequest(input) {
 
 
     // WRITING
-
     if (
         text.includes("write") ||
         text.includes("writing") ||
@@ -855,7 +849,6 @@ function analyzeRequest(input) {
 
 
     // STUDY
-
     if (
         text.includes("study") ||
         text.includes("exam") ||
@@ -867,8 +860,7 @@ function analyzeRequest(input) {
     }
 
 
-    // CODING
-
+    // CODING / WEBSITE / APP
     if (
         text.includes("code") ||
         text.includes("coding") ||
@@ -881,7 +873,6 @@ function analyzeRequest(input) {
 
 
     // PRESENTATION
-
     if (
         text.includes("presentation") ||
         text.includes("slides")
@@ -891,7 +882,6 @@ function analyzeRequest(input) {
 
 
     // MUSIC
-
     if (
         text.includes("music") ||
         text.includes("song")
@@ -901,7 +891,6 @@ function analyzeRequest(input) {
 
 
     // VOICE
-
     if (
         text.includes("voice") ||
         text.includes("voiceover") ||
@@ -913,7 +902,6 @@ function analyzeRequest(input) {
 
 
     // RESEARCH
-
     if (
         text.includes("research") ||
         text.includes("sources") ||
@@ -924,7 +912,6 @@ function analyzeRequest(input) {
 
 
     // FREE
-
     if (
         text.includes("free") ||
         text.includes("gratis") ||
@@ -938,7 +925,6 @@ function analyzeRequest(input) {
 
 
     // BEGINNER
-
     if (
         text.includes("beginner") ||
         text.includes("easy") ||
@@ -950,8 +936,24 @@ function analyzeRequest(input) {
     }
 
 
-    // PROFESSIONAL
+    // NO-CODE / WITHOUT CODING
+    if (
+        text.includes("without coding") ||
+        text.includes("without code") ||
+        text.includes("no-code") ||
+        text.includes("nocode") ||
+        text.includes("don't know how to code") ||
+        text.includes("do not know how to code") ||
+        text.includes("no coding") ||
+        text.includes("without technical skills") ||
+        text.includes("non technical")
+    ) {
+        needs.noCode = true;
+        needs.experience = "beginner";
+    }
 
+
+    // PROFESSIONAL
     if (
         text.includes("professional") ||
         text.includes("advanced")
@@ -961,7 +963,6 @@ function analyzeRequest(input) {
 
 
     // JOB SEEKER
-
     if (
         text.includes("job") ||
         text.includes("career") ||
@@ -975,7 +976,6 @@ function analyzeRequest(input) {
 
 
     // STUDENT
-
     if (
         text.includes("student") ||
         text.includes("university") ||
@@ -987,7 +987,6 @@ function analyzeRequest(input) {
 
 
     // BUSINESS
-
     if (
         text.includes("business") ||
         text.includes("company") ||
@@ -999,7 +998,8 @@ function analyzeRequest(input) {
 
 
     return needs;
-}
+      }
+
     // ==========================================
 // MATCHING ENGINE
 // ==========================================
