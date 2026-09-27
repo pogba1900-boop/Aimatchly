@@ -768,9 +768,14 @@ const tools = [
 // ==========================================
 // UNDERSTAND USER REQUEST
 // ==========================================
+
+// ==========================================
+// UNDERSTAND USER REQUEST
+// ==========================================
+
 function analyzeRequest(input) {
 
-    const text = input.toLowerCase();
+    const text = input.toLowerCase().trim();
 
     const needs = {
         goals: [],
@@ -780,202 +785,320 @@ function analyzeRequest(input) {
         noCode: false
     };
 
+    // ----------------------------
+    // CV / RESUME
+    // ----------------------------
 
-    // CV
     if (
-        text.includes("cv") ||
+        /\bcv\b/.test(text) ||
         text.includes("resume") ||
-        text.includes("curriculum vitae")
+        text.includes("curriculum vitae") ||
+        text.includes("cover letter") ||
+        text.includes("job application")
     ) {
         needs.goals.push("cv");
     }
 
-
+    // ----------------------------
     // CAREER / JOB
+    // ----------------------------
+
     if (
         text.includes("job") ||
         text.includes("career") ||
         text.includes("emploi") ||
         text.includes("travail") ||
-        text.includes("work")
+        text.includes("work") ||
+        text.includes("hiring") ||
+        text.includes("recruitment") ||
+        text.includes("interview")
     ) {
         needs.goals.push("career");
     }
 
-
+    // ----------------------------
     // VIDEO
+    // ----------------------------
+
     if (
         text.includes("video") ||
         text.includes("tiktok") ||
         text.includes("youtube") ||
         text.includes("reel") ||
-        text.includes("short")
+        text.includes("short") ||
+        text.includes("film") ||
+        text.includes("edit a video") ||
+        text.includes("video editing")
     ) {
         needs.goals.push("video");
     }
 
-
+    // ----------------------------
     // IMAGE
+    // ----------------------------
+
     if (
         text.includes("image") ||
         text.includes("picture") ||
-        text.includes("photo")
+        text.includes("photo") ||
+        text.includes("illustration") ||
+        text.includes("visual") ||
+        text.includes("artwork")
     ) {
         needs.goals.push("image");
     }
 
+    // ----------------------------
+    // DESIGN / LOGO
+    // ----------------------------
 
-    // DESIGN
     if (
         text.includes("logo") ||
         text.includes("poster") ||
-        text.includes("design")
+        text.includes("design") ||
+        text.includes("flyer") ||
+        text.includes("banner") ||
+        text.includes("graphic")
     ) {
         needs.goals.push("design");
     }
 
-
+    // ----------------------------
     // WRITING
+    // ----------------------------
+
     if (
         text.includes("write") ||
         text.includes("writing") ||
         text.includes("article") ||
         text.includes("blog") ||
         text.includes("email") ||
-        text.includes("rewrite")
+        text.includes("rewrite") ||
+        text.includes("text") ||
+        text.includes("content") ||
+        text.includes("copywriting")
     ) {
         needs.goals.push("writing");
     }
 
-
+    // ----------------------------
     // STUDY
+    // ----------------------------
+
     if (
         text.includes("study") ||
         text.includes("exam") ||
         text.includes("student") ||
         text.includes("learn") ||
-        text.includes("course")
+        text.includes("course") ||
+        text.includes("homework") ||
+        text.includes("lesson") ||
+        text.includes("school") ||
+        text.includes("university")
     ) {
         needs.goals.push("study");
     }
 
+    // ----------------------------
+    // CODING
+    // ----------------------------
 
-    // CODING / WEBSITE / APP
     if (
         text.includes("code") ||
         text.includes("coding") ||
-        text.includes("program") ||
+        text.includes("programming") ||
+        text.includes("programmer") ||
+        text.includes("developer") ||
+        text.includes("debug") ||
         text.includes("website") ||
-        text.includes("app")
+        text.includes("web app") ||
+        text.includes("application") ||
+        text.includes("software")
     ) {
         needs.goals.push("coding");
     }
 
-
+    // ----------------------------
     // PRESENTATION
+    // ----------------------------
+
     if (
         text.includes("presentation") ||
-        text.includes("slides")
+        text.includes("presentations") ||
+        text.includes("slides") ||
+        text.includes("powerpoint") ||
+        text.includes("pitch deck")
     ) {
         needs.goals.push("presentation");
     }
 
-
+    // ----------------------------
     // MUSIC
+    // ----------------------------
+
     if (
         text.includes("music") ||
-        text.includes("song")
+        text.includes("song") ||
+        text.includes("songs") ||
+        text.includes("beat") ||
+        text.includes("melody")
     ) {
         needs.goals.push("music");
     }
 
-
+    // ----------------------------
     // VOICE
+    // ----------------------------
+
     if (
         text.includes("voice") ||
         text.includes("voiceover") ||
+        text.includes("voice over") ||
         text.includes("narration") ||
+        text.includes("narrator") ||
+        text.includes("dubbing") ||
         text.includes("dub")
     ) {
         needs.goals.push("voice");
     }
 
-
+    // ----------------------------
     // RESEARCH
+    // ----------------------------
+
     if (
         text.includes("research") ||
         text.includes("sources") ||
-        text.includes("information")
+        text.includes("source") ||
+        text.includes("facts") ||
+        text.includes("information") ||
+        text.includes("investigate")
     ) {
         needs.goals.push("research");
     }
 
+    // ----------------------------
+    // BUSINESS
+    // ----------------------------
 
+    if (
+        text.includes("business") ||
+        text.includes("company") ||
+        text.includes("marketing") ||
+        text.includes("sales") ||
+        text.includes("client") ||
+        text.includes("customer")
+    ) {
+        needs.goals.push("business");
+    }
+
+    // ----------------------------
+    // AUTOMATION
+    // ----------------------------
+
+    if (
+        text.includes("automation") ||
+        text.includes("automate") ||
+        text.includes("workflow") ||
+        text.includes("repetitive tasks") ||
+        text.includes("integrate")
+    ) {
+        needs.goals.push("automation");
+    }
+
+    // ----------------------------
+    // AUDIO / PODCAST
+    // ----------------------------
+
+    if (
+        text.includes("podcast") ||
+        text.includes("audio") ||
+        text.includes("transcription") ||
+        text.includes("transcribe")
+    ) {
+        needs.goals.push("audio");
+    }
+
+    // ----------------------------
     // FREE
+    // ----------------------------
+
     if (
         text.includes("free") ||
         text.includes("gratis") ||
         text.includes("gratuit") ||
         text.includes("gratuitement") ||
         text.includes("no money") ||
-        text.includes("without paying")
+        text.includes("without paying") ||
+        text.includes("don't want to pay") ||
+        text.includes("do not want to pay")
     ) {
         needs.budget = "free";
     }
 
-
+    // ----------------------------
     // BEGINNER
+    // ----------------------------
+
     if (
         text.includes("beginner") ||
         text.includes("easy") ||
         text.includes("simple") ||
         text.includes("without experience") ||
-        text.includes("no experience")
+        text.includes("no experience") ||
+        text.includes("easy to use") ||
+        text.includes("not technical")
     ) {
         needs.experience = "beginner";
     }
 
+    // ----------------------------
+    // NO CODE
+    // ----------------------------
 
-    // NO-CODE / WITHOUT CODING
     if (
         text.includes("without coding") ||
         text.includes("without code") ||
         text.includes("no-code") ||
         text.includes("nocode") ||
+        text.includes("no code") ||
         text.includes("don't know how to code") ||
         text.includes("do not know how to code") ||
         text.includes("no coding") ||
-        text.includes("without technical skills") ||
-        text.includes("non technical")
+        text.includes("without technical skills")
     ) {
         needs.noCode = true;
         needs.experience = "beginner";
     }
 
-
+    // ----------------------------
     // PROFESSIONAL
+    // ----------------------------
+
     if (
         text.includes("professional") ||
-        text.includes("advanced")
+        text.includes("advanced") ||
+        text.includes("expert")
     ) {
         needs.experience = "professional";
     }
 
+    // ----------------------------
+    // AUDIENCE
+    // ----------------------------
 
-    // JOB SEEKER
     if (
         text.includes("job") ||
         text.includes("career") ||
         text.includes("emploi") ||
         text.includes("travail") ||
-        text.includes("cv") ||
-        text.includes("resume")
+        /\bcv\b/.test(text) ||
+        text.includes("resume") ||
+        text.includes("interview")
     ) {
         needs.audience = "job_seeker";
     }
 
-
-    // STUDENT
     if (
         text.includes("student") ||
         text.includes("university") ||
@@ -985,160 +1108,610 @@ function analyzeRequest(input) {
         needs.audience = "student";
     }
 
-
-    // BUSINESS
     if (
         text.includes("business") ||
         text.includes("company") ||
         text.includes("marketing") ||
-        text.includes("client")
+        text.includes("client") ||
+        text.includes("customer")
     ) {
         needs.audience = "business";
     }
 
-
     return needs;
-      }
+}
 
-    // ==========================================
-// MATCHING ENGINE
+
+// ==========================================
+// MATCHING ENGINE — IMPROVED
 // ==========================================
 
 function calculateMatch(tool, needs, input) {
 
-    const text = input.toLowerCase();
+    const text = input.toLowerCase().trim();
 
     let score = 0;
 
-    // 1. Main goal
-    if (needs.goals.includes("cv")) {
-        if (tool.name === "ChatGPT") score += 45;
-        else if (tool.name === "Canva") score += 45;
-        else if (tool.name === "Grammarly") score += 30;
-        else score += 5;
+    // ======================================
+    // 1. MAIN GOAL
+    // ======================================
+
+    const mainGoal = needs.goals[0];
+
+    const goalScores = {
+
+        cv: {
+            "ChatGPT": 45,
+            "Canva": 45,
+            "Grammarly": 32,
+            "Claude": 30,
+            "Gemini": 25
+        },
+
+        career: {
+            "ChatGPT": 35,
+            "Canva": 25,
+            "Grammarly": 25,
+            "Claude": 25
+        },
+
+        video: {
+            "CapCut": 50,
+            "Runway": 48,
+            "HeyGen": 42,
+            "Synthesia": 40,
+            "InVideo": 45,
+            "Descript": 38
+        },
+
+        image: {
+            "Midjourney": 50,
+            "Leonardo AI": 48,
+            "Ideogram": 47,
+            "Adobe Firefly": 45,
+            "Canva": 38
+        },
+
+        design: {
+            "Canva": 50,
+            "Adobe Firefly": 45,
+            "Ideogram": 44,
+            "Midjourney": 40,
+            "Leonardo AI": 40
+        },
+
+        writing: {
+            "ChatGPT": 48,
+            "Claude": 46,
+            "Grammarly": 42,
+            "Gemini": 38,
+            "Jasper": 35,
+            "Copy.ai": 35
+        },
+
+        study: {
+            "NotebookLM": 50,
+            "ChatGPT": 47,
+            "Perplexity": 42,
+            "Claude": 40,
+            "Gemini": 38
+        },
+
+        coding: {
+            "GitHub Copilot": 50,
+            "Cursor": 48,
+            "Replit": 45,
+            "Bolt.new": 44,
+            "Lovable": 43,
+            "ChatGPT": 40
+        },
+
+        presentation: {
+            "Gamma": 50,
+            "Canva": 45,
+            "ChatGPT": 35,
+            "Microsoft Copilot": 35
+        },
+
+        music: {
+            "Suno": 55
+        },
+
+        voice: {
+            "ElevenLabs": 55,
+            "HeyGen": 35
+        },
+
+        research: {
+            "Perplexity": 50,
+            "NotebookLM": 45,
+            "ChatGPT": 43,
+            "Claude": 42,
+            "Gemini": 40
+        },
+
+        business: {
+            "ChatGPT": 40,
+            "Microsoft Copilot": 38,
+            "Claude": 35,
+            "Jasper": 35,
+            "Copy.ai": 35,
+            "Zapier": 40
+        },
+
+        automation: {
+            "Zapier": 55
+        },
+
+        audio: {
+            "Descript": 50,
+            "ElevenLabs": 45
+        }
+    };
+
+    // Main goal score
+    if (
+        mainGoal &&
+        goalScores[mainGoal] &&
+        goalScores[mainGoal][tool.name]
+    ) {
+        score += goalScores[mainGoal][tool.name];
     }
 
-    else if (needs.goals.includes("video")) {
-        if (tool.name === "CapCut") score += 50;
-        else if (tool.name === "Runway") score += 45;
-        else if (tool.name === "ChatGPT") score += 20;
-        else score += 5;
-    }
+    // ======================================
+    // 2. SECONDARY GOALS
+    // ======================================
 
-    else if (needs.goals.includes("study")) {
-        if (tool.name === "NotebookLM") score += 50;
-        else if (tool.name === "ChatGPT") score += 45;
-        else if (tool.name === "Perplexity") score += 30;
-        else score += 5;
-    }
+    needs.goals.forEach(goal => {
 
-    else if (needs.goals.includes("image")) {
-        if (tool.name === "Midjourney") score += 50;
-        else if (tool.name === "Canva") score += 40;
-        else score += 5;
-    }
+        if (goal === mainGoal) return;
 
-    else if (needs.goals.includes("coding")) {
-        if (tool.name === "GitHub Copilot") score += 50;
-        else if (tool.name === "ChatGPT") score += 45;
-        else score += 5;
-    }
-
-    else if (needs.goals.includes("presentation")) {
-        if (tool.name === "Gamma") score += 50;
-        else if (tool.name === "Canva") score += 45;
-        else if (tool.name === "ChatGPT") score += 25;
-        else score += 5;
-    }
-
-    else if (needs.goals.includes("music")) {
-        if (tool.name === "Suno") score += 55;
-        else score += 5;
-    }
-
-    else if (needs.goals.includes("voice")) {
-        if (tool.name === "ElevenLabs") score += 55;
-        else score += 5;
-    }
-
-    else if (needs.goals.includes("research")) {
-        if (tool.name === "Perplexity") score += 50;
-        else if (tool.name === "ChatGPT") score += 40;
-        else if (tool.name === "NotebookLM") score += 35;
-        else score += 5;
-    }
-
-    // 2. Career / job
-    if (needs.goals.includes("career")) {
         if (
-            tool.name === "ChatGPT" ||
-            tool.name === "Canva"
+            goalScores[goal] &&
+            goalScores[goal][tool.name]
         ) {
-            score += 20;
+            score += Math.min(
+                goalScores[goal][tool.name] * 0.25,
+                12
+            );
         }
 
-        if (tool.name === "Grammarly") {
-            score += 12;
-        }
-    }
+    });
 
-    // 3. Free request
-    if (needs.budget === "free") {
+    // ======================================
+    // 3. KEYWORD RELEVANCE
+    // ======================================
 
-        if (
-            tool.name === "ChatGPT" ||
-            tool.name === "Canva" ||
-            tool.name === "Grammarly" ||
-            tool.name === "CapCut" ||
-            tool.name === "NotebookLM"
-        ) {
-            score += 10;
-        }
-    }
-
-    // 4. Beginner
-    if (needs.experience === "beginner") {
-
-        if (
-            tool.name === "Canva" ||
-            tool.name === "ChatGPT" ||
-            tool.name === "CapCut" ||
-            tool.name === "Gamma"
-        ) {
-            score += 8;
-        }
-    }
-
-    // 5. Professional
-    if (needs.experience === "professional") {
-
-        if (
-            tool.name === "ChatGPT" ||
-            tool.name === "Canva" ||
-            tool.name === "Runway"
-        ) {
-            score += 8;
-        }
-    }
-
-    // 6. Direct keyword relevance
     let keywordMatches = 0;
 
     tool.keywords.forEach(keyword => {
 
-        if (text.includes(keyword)) {
+        if (text.includes(keyword.toLowerCase())) {
             keywordMatches++;
         }
 
     });
 
-    score += Math.min(keywordMatches * 3, 12);
+    score += Math.min(keywordMatches * 3, 15);
 
-    // 7. Keep score between 5 and 98
-    return Math.min(Math.max(score, 5), 98);
-            }
+    // ======================================
+    // 4. CAREER / JOB
+    // ======================================
+
+    if (needs.goals.includes("career")) {
+
+        if (
+            tool.name === "ChatGPT" ||
+            tool.name === "Canva" ||
+            tool.name === "Grammarly" ||
+            tool.name === "Claude"
+        ) {
+            score += 8;
+        }
+
+    }
+
+    // ======================================
+    // 5. FREE REQUEST
+    // ======================================
+
+    if (needs.budget === "free") {
+
+        const freeFriendlyTools = [
+            "ChatGPT",
+            "Canva",
+            "Grammarly",
+            "CapCut",
+            "NotebookLM",
+            "Gemini",
+            "Microsoft Copilot",
+            "Replit",
+            "Perplexity"
+        ];
+
+        if (freeFriendlyTools.includes(tool.name)) {
+            score += 7;
+        }
+
+    }
+
+    // ======================================
+    // 6. BEGINNER
+    // ======================================
+
+    if (needs.experience === "beginner") {
+
+        const beginnerFriendlyTools = [
+            "ChatGPT",
+            "Canva",
+            "CapCut",
+            "Gamma",
+            "NotebookLM",
+            "HeyGen",
+            "InVideo",
+            "Lovable"
+        ];
+
+        if (beginnerFriendlyTools.includes(tool.name)) {
+            score += 6;
+        }
+
+    }
+
+    // ======================================
+    // 7. NO-CODE
+    // ======================================
+
+    if (needs.noCode) {
+
+        const noCodeTools = [
+            "Canva",
+            "ChatGPT",
+            "CapCut",
+            "Gamma",
+            "Replit",
+            "Lovable",
+            "Bolt.new",
+            "InVideo",
+            "HeyGen"
+        ];
+
+        if (noCodeTools.includes(tool.name)) {
+            score += 8;
+        }
+
+        // Coding tools get a small penalty
+        if (
+            tool.name === "GitHub Copilot" ||
+            tool.name === "Cursor"
+        ) {
+            score -= 10;
+        }
+
+    }
+
+    // ======================================
+    // 8. PROFESSIONAL
+    // ======================================
+
+    if (needs.experience === "professional") {
+
+        const professionalTools = [
+            "ChatGPT",
+            "Claude",
+            "Runway",
+            "Adobe Firefly",
+            "GitHub Copilot",
+            "Cursor",
+            "Perplexity"
+        ];
+
+        if (professionalTools.includes(tool.name)) {
+            score += 5;
+        }
+
+    }
+
+    // ======================================
+    // 9. AUDIENCE
+    // ======================================
+
+    if (needs.audience === "student") {
+
+        const studentTools = [
+            "NotebookLM",
+            "ChatGPT",
+            "Perplexity",
+            "Claude",
+            "Gemini"
+        ];
+
+        if (studentTools.includes(tool.name)) {
+            score += 6;
+        }
+
+    }
+
+    if (needs.audience === "job_seeker") {
+
+        const jobTools = [
+            "ChatGPT",
+            "Canva",
+            "Grammarly",
+            "Claude"
+        ];
+
+        if (jobTools.includes(tool.name)) {
+            score += 6;
+        }
+
+    }
+
+    if (needs.audience === "business") {
+
+        const businessTools = [
+            "ChatGPT",
+            "Claude",
+            "Microsoft Copilot",
+            "Jasper",
+            "Copy.ai",
+            "Zapier"
+        ];
+
+        if (businessTools.includes(tool.name)) {
+            score += 6;
+        }
+
+    }
+
+    // ======================================
+    // 10. STRONG NEGATIVE MATCHES
+    // ======================================
+
+    // If user wants a CV, music tools should not rank high.
+    if (
+        mainGoal === "cv" &&
+        (
+            tool.name === "Suno" ||
+            tool.name === "ElevenLabs" ||
+            tool.name === "CapCut"
+        )
+    ) {
+        score -= 20;
+    }
+
+    // If user wants music, unrelated productivity tools should drop.
+    if (
+        mainGoal === "music" &&
+        tool.name !== "Suno"
+    ) {
+        score -= 20;
+    }
+
+    // If user wants voice, unrelated tools should drop.
+    if (
+        mainGoal === "voice" &&
+        tool.name !== "ElevenLabs" &&
+        tool.name !== "HeyGen"
+    ) {
+        score -= 15;
+    }
+
+    // If user wants video, unrelated writing tools should drop.
+    if (
+        mainGoal === "video" &&
+        (
+            tool.name === "Grammarly" ||
+            tool.name === "Jasper" ||
+            tool.name === "Copy.ai"
+        )
+    ) {
+        score -= 15;
+    }
+
+    // ======================================
+    // 11. FINAL SCORE
+    // ======================================
+
+    return Math.min(
+        Math.max(Math.round(score), 0),
+        98
+    );
+}
 
 
+// ==========================================
+// EXPLANATION
+// ==========================================
+
+function explainMatch(tool, needs) {
+
+    const mainGoal = needs.goals[0];
+
+    // ----------------------------
+    // CV
+    // ----------------------------
+
+    if (mainGoal === "cv") {
+
+        if (tool.name === "Canva") {
+            return "Excellent pour créer un CV professionnel avec des modèles et une présentation visuelle.";
+        }
+
+        if (tool.name === "ChatGPT") {
+            return "Excellent pour rédiger, améliorer et adapter le contenu de votre CV à une offre d'emploi.";
+        }
+
+        if (tool.name === "Grammarly") {
+            return "Utile pour corriger la grammaire, améliorer la clarté et rendre votre CV plus professionnel.";
+        }
+
+        if (tool.name === "Claude") {
+            return "Utile pour rédiger, restructurer et améliorer le contenu d'un CV.";
+        }
+    }
+
+    // ----------------------------
+    // CAREER
+    // ----------------------------
+
+    if (mainGoal === "career") {
+
+        if (tool.name === "ChatGPT") {
+            return "Utile pour préparer votre recherche d'emploi, vos candidatures et vos entretiens.";
+        }
+
+        if (tool.name === "Canva") {
+            return "Utile pour créer un CV et des documents professionnels visuellement attractifs.";
+        }
+
+        if (tool.name === "Grammarly") {
+            return "Utile pour améliorer vos emails, lettres de motivation et candidatures.";
+        }
+    }
+
+    // ----------------------------
+    // VIDEO
+    // ----------------------------
+
+    if (mainGoal === "video") {
+
+        if (tool.name === "CapCut") {
+            return "Très pratique pour créer et modifier rapidement des vidéos pour TikTok, YouTube et les réseaux sociaux.";
+        }
+
+        if (tool.name === "Runway") {
+            return "Puissant pour générer et modifier des vidéos avec des outils d'intelligence artificielle.";
+        }
+
+        if (tool.name === "HeyGen") {
+            return "Utile pour créer des vidéos avec avatars, voix et présentations professionnelles.";
+        }
+
+        if (tool.name === "Synthesia") {
+            return "Adapté aux vidéos de formation, de présentation et de communication professionnelle.";
+        }
+
+        if (tool.name === "InVideo") {
+            return "Pratique pour transformer des idées et scripts en vidéos pour YouTube et les réseaux sociaux.";
+        }
+
+        if (tool.name === "Descript") {
+            return "Utile pour modifier des vidéos et podcasts avec transcription et outils d'édition assistée par IA.";
+        }
+    }
+
+    // ----------------------------
+    // IMAGE
+    // ----------------------------
+
+    if (mainGoal === "image") {
+
+        if (tool.name === "Midjourney") {
+            return "Excellent pour générer des images créatives et artistiques à partir d'une description.";
+        }
+
+        if (tool.name === "Leonardo AI") {
+            return "Très adapté à la création d'images réalistes, créatives et de visuels personnalisés.";
+        }
+
+        if (tool.name === "Ideogram") {
+            return "Particulièrement utile pour créer des images contenant du texte, des affiches et des designs.";
+        }
+
+        if (tool.name === "Adobe Firefly") {
+            return "Utile pour générer et modifier des images et des créations graphiques.";
+        }
+
+        if (tool.name === "Canva") {
+            return "Pratique pour créer rapidement des visuels avec des modèles et des outils de design.";
+        }
+    }
+
+    // ----------------------------
+    // DESIGN
+    // ----------------------------
+
+    if (mainGoal === "design") {
+
+        if (tool.name === "Canva") {
+            return "Très pratique pour créer rapidement des logos, affiches, présentations et contenus visuels.";
+        }
+
+        if (tool.name === "Adobe Firefly") {
+            return "Utile pour générer et modifier des éléments visuels avec l'IA.";
+        }
+
+        if (tool.name === "Ideogram") {
+            return "Particulièrement intéressant pour les affiches, logos et designs contenant du texte.";
+        }
+    }
+
+    // ----------------------------
+    // WRITING
+    // ----------------------------
+
+    if (mainGoal === "writing") {
+
+        if (tool.name === "ChatGPT") {
+            return "Polyvalent pour rédiger, réécrire, corriger et adapter différents types de textes.";
+        }
+
+        if (tool.name === "Claude") {
+            return "Très utile pour rédiger et analyser des textes longs et complexes.";
+        }
+
+        if (tool.name === "Grammarly") {
+            return "Spécialisé dans la correction, la grammaire, la clarté et le style d'écriture.";
+        }
+
+        if (tool.name === "Jasper") {
+            return "Orienté vers la création de contenus marketing et professionnels.";
+        }
+
+        if (tool.name === "Copy.ai") {
+            return "Adapté à la rédaction marketing, aux emails et aux contenus commerciaux.";
+        }
+    }
+
+    // ----------------------------
+    // STUDY
+    // ----------------------------
+
+    if (mainGoal === "study") {
+
+        if (tool.name === "NotebookLM") {
+            return "Très utile pour étudier à partir de vos propres documents, notes et sources.";
+        }
+
+        if (tool.name === "ChatGPT") {
+            return "Utile pour expliquer les cours, créer des exercices et préparer un examen.";
+        }
+
+        if (tool.name === "Perplexity") {
+            return "Utile pour rechercher des informations et consulter des sources pendant vos études.";
+        }
+
+        if (tool.name === "Claude") {
+            return "Utile pour comprendre, résumer et analyser des documents d'étude.";
+        }
+    }
+
+    // ----------------------------
+    // CODING
+    // ----------------------------
+
+    if (mainGoal === "coding") {
+
+        if (tool.name === "GitHub Copilot") {
+            return "Assistant spécialisé pour écrire, comprendre et améliorer du code.";
+        }
+
+        if (tool.name === "Cursor") {
+            return "Éditeur de code avec IA conçu pour aider au développement et au débogage.";
+        }
+
+        if (tool.name === "Replit") {
 // ==========================================
 // EXPLANATION
 // ==========================================
