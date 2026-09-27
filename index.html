@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,8 @@
 
 <title>AIMatchly — Find the Right AI Tool</title>
 
-<meta name="description" content="AIMatchly finds the right AI tool for what you want to accomplish.">
+<meta name="description"
+content="AIMatchly helps you find the right AI tool for what you want to accomplish.">
 
 <style>
 
@@ -338,6 +340,7 @@ footer {
 
 </header>
 
+
 <section class="hero">
 
 <div class="badge">✨ AI Tool Matchmaker</div>
@@ -357,7 +360,7 @@ type="text"
 placeholder="What do you want AI to help you with?"
 >
 
-<button onclick="findAI()">
+<button id="findButton" type="button">
 FIND MY AI →
 </button>
 
@@ -372,6 +375,7 @@ Try:
 </div>
 
 </section>
+
 
 <section id="results">
 
@@ -392,6 +396,7 @@ We analyzed your request and found the best matches.
 </div>
 
 </section>
+
 
 <section id="how">
 
@@ -415,6 +420,7 @@ We analyzed your request and found the best matches.
 
 </div>
 
+
 <div class="step">
 
 <div class="step-number">2</div>
@@ -424,6 +430,7 @@ We analyzed your request and found the best matches.
 <p>Our matching engine identifies your needs.</p>
 
 </div>
+
 
 <div class="step">
 
@@ -438,6 +445,7 @@ We analyzed your request and found the best matches.
 </div>
 
 </section>
+
 
 <section id="categories">
 
@@ -464,12 +472,17 @@ We analyzed your request and found the best matches.
 
 </section>
 
+
 <footer id="about">
 
-<p>© 2026 AIMatchly — Find the right AI for what you want to do.</p>
+<p>
+© 2026 AIMatchly — Find the right AI for what you want to do.
+</p>
 
-  </footer>
-  <script>
+</footer>
+
+
+<script>
 
 // ==========================================
 // AI TOOLS DATABASE
@@ -478,330 +491,406 @@ We analyzed your request and found the best matches.
 const tools = [
 
 {
-    name: "ChatGPT",
-    keywords: [
-        "cv","resume","career","job","writing",
-        "study","coding","research","presentation",
-        "email","language","analysis"
-    ],
-    description: "A versatile AI assistant for writing, CVs, study, coding, research and many other tasks.",
-    tags: ["Writing","CV","Study","Coding"],
-    url: "https://chatgpt.com"
+name: "ChatGPT",
+keywords: [
+"cv","resume","career","job","writing",
+"study","coding","research","presentation",
+"email","language","analysis"
+],
+description:
+"A versatile AI assistant for writing, CVs, study, coding, research and many other tasks.",
+tags: ["Writing","CV","Study","Coding"],
+url: "https://chatgpt.com"
 },
 
 {
-    name: "Canva",
-    keywords: [
-        "cv","resume","career","design",
-        "image","presentation","social",
-        "logo","poster","marketing"
-    ],
-    description: "A design platform with AI tools and ready-made templates for CVs, presentations and visual content.",
-    tags: ["Design","CV","Presentation","Images"],
-    url: "https://www.canva.com"
+name: "Canva",
+keywords: [
+"cv","resume","career","design",
+"image","presentation","social",
+"logo","poster","marketing"
+],
+description:
+"A design platform with AI tools and ready-made templates for CVs, presentations and visual content.",
+tags: ["Design","CV","Presentation","Images"],
+url: "https://www.canva.com"
 },
 
 {
-    name: "Grammarly",
-    keywords: [
-        "writing","grammar","english",
-        "rewrite","email","professional",
-        "cv","resume"
-    ],
-    description: "An AI writing assistant that helps improve grammar, clarity and professional writing.",
-    tags: ["Writing","Grammar","English","CV"],
-    url: "https://www.grammarly.com"
+name: "Grammarly",
+keywords: [
+"writing","grammar","english",
+"rewrite","email","professional",
+"cv","resume"
+],
+description:
+"An AI writing assistant that helps improve grammar, clarity and professional writing.",
+tags: ["Writing","Grammar","English","CV"],
+url: "https://www.grammarly.com"
 },
 
 {
-    name: "Perplexity",
-    keywords: [
-        "research","sources","information",
-        "search","facts","study"
-    ],
-    description: "An AI search and research assistant designed to provide answers with sources.",
-    tags: ["Research","Search","Sources"],
-    url: "https://www.perplexity.ai"
+name: "Perplexity",
+keywords: [
+"research","sources","information",
+"search","facts","study"
+],
+description:
+"An AI search and research assistant designed to provide answers with sources.",
+tags: ["Research","Search","Sources"],
+url: "https://www.perplexity.ai"
 },
 
 {
-    name: "NotebookLM",
-    keywords: [
-        "study","research","pdf",
-        "documents","notes","exam",
-        "summarize"
-    ],
-    description: "An AI research and study assistant that works with your documents and sources.",
-    tags: ["Study","PDF","Research","Notes"],
-    url: "https://notebooklm.google.com"
+name: "NotebookLM",
+keywords: [
+"study","research","pdf",
+"documents","notes","exam",
+"summarize"
+],
+description:
+"An AI research and study assistant that works with your documents and sources.",
+tags: ["Study","PDF","Research","Notes"],
+url: "https://notebooklm.google.com"
 },
 
 {
-    name: "CapCut",
-    keywords: [
-        "video","tiktok","youtube",
-        "shorts","reels","editing",
-        "social"
-    ],
-    description: "A popular video editor with AI-powered tools for social media and short-form video.",
-    tags: ["Video","TikTok","YouTube","Editing"],
-    url: "https://www.capcut.com"
+name: "CapCut",
+keywords: [
+"video","tiktok","youtube",
+"shorts","reels","editing",
+"social"
+],
+description:
+"A popular video editor with AI-powered tools for social media and short-form video.",
+tags: ["Video","TikTok","YouTube","Editing"],
+url: "https://www.capcut.com"
 },
 
 {
-    name: "Runway",
-    keywords: [
-        "video","generation",
-        "editing","creative",
-        "professional"
-    ],
-    description: "An AI platform for generating and editing creative video content.",
-    tags: ["Video","Generation","Creative"],
-    url: "https://runwayml.com"
+name: "Runway",
+keywords: [
+"video","generation",
+"editing","creative",
+"professional"
+],
+description:
+"An AI platform for generating and editing creative video content.",
+tags: ["Video","Generation","Creative"],
+url: "https://runwayml.com"
 },
 
 {
-    name: "Midjourney",
-    keywords: [
-        "image","art","creative",
-        "realistic","design",
-        "picture"
-    ],
-    description: "An AI image generation platform focused on creative and artistic visuals.",
-    tags: ["Images","Art","Creative"],
-    url: "https://www.midjourney.com"
+name: "Midjourney",
+keywords: [
+"image","art","creative",
+"realistic","design",
+"picture"
+],
+description:
+"An AI image generation platform focused on creative and artistic visuals.",
+tags: ["Images","Art","Creative"],
+url: "https://www.midjourney.com"
 },
 
 {
-    name: "ElevenLabs",
-    keywords: [
-        "voice","voiceover",
-        "audio","narration",
-        "dubbing"
-    ],
-    description: "AI voice technology for narration, voiceovers, dubbing and audio creation.",
-    tags: ["Voice","Audio","Dubbing"],
-    url: "https://elevenlabs.io"
+name: "ElevenLabs",
+keywords: [
+"voice","voiceover",
+"audio","narration",
+"dubbing"
+],
+description:
+"AI voice technology for narration, voiceovers, dubbing and audio creation.",
+tags: ["Voice","Audio","Dubbing"],
+url: "https://elevenlabs.io"
 },
 
 {
-    name: "Suno",
-    keywords: [
-        "music","song",
-        "audio","creative"
-    ],
-    description: "An AI music creation platform for generating songs and musical ideas.",
-    tags: ["Music","Songs","Audio"],
-    url: "https://suno.com"
+name: "Suno",
+keywords: [
+"music","song",
+"audio","creative"
+],
+description:
+"An AI music creation platform for generating songs and musical ideas.",
+tags: ["Music","Songs","Audio"],
+url: "https://suno.com"
 },
 
 {
-    name: "GitHub Copilot",
-    keywords: [
-        "coding","code",
-        "programming","developer",
-        "debugging","website"
-    ],
-    description: "An AI coding assistant that helps developers write and understand code.",
-    tags: ["Coding","Programming","Developer"],
-    url: "https://github.com/features/copilot"
+name: "GitHub Copilot",
+keywords: [
+"coding","code",
+"programming","developer",
+"debugging","website"
+],
+description:
+"An AI coding assistant that helps developers write and understand code.",
+tags: ["Coding","Programming","Developer"],
+url: "https://github.com/features/copilot"
 },
 
 {
-    name: "Gamma",
-    keywords: [
-        "presentation","slides",
-        "business","design",
-        "document"
-    ],
-    description: "An AI tool for creating presentations, documents and visual content quickly.",
-    tags: ["Presentation","Business","Slides"],
-    url: "https://gamma.app"
-},
-    {
-    name: "Claude",
-    keywords: ["writing","research","study","coding","analysis","documents","career"],
-    description: "An AI assistant for writing, analysis, research, documents and coding.",
-    tags: ["Writing","Research","Coding"],
-    url: "https://claude.ai"
+name: "Gamma",
+keywords: [
+"presentation","slides",
+"business","design",
+"document"
+],
+description:
+"An AI tool for creating presentations, documents and visual content quickly.",
+tags: ["Presentation","Business","Slides"],
+url: "https://gamma.app"
 },
 
 {
-    name: "Gemini",
-    keywords: ["writing","research","study","images","coding","analysis","productivity"],
-    description: "Google's AI assistant for research, writing, productivity and multimodal tasks.",
-    tags: ["Research","Writing","Study"],
-    url: "https://gemini.google.com"
+name: "Claude",
+keywords: [
+"writing","research","study",
+"coding","analysis","documents",
+"career"
+],
+description:
+"An AI assistant for writing, analysis, research, documents and coding.",
+tags: ["Writing","Research","Coding"],
+url: "https://claude.ai"
 },
 
 {
-    name: "Microsoft Copilot",
-    keywords: ["writing","business","productivity","image","research","office"],
-    description: "An AI assistant for productivity, writing, research and Microsoft tools.",
-    tags: ["Business","Writing","Productivity"],
-    url: "https://copilot.microsoft.com"
+name: "Gemini",
+keywords: [
+"writing","research","study",
+"images","coding","analysis",
+"productivity"
+],
+description:
+"Google's AI assistant for research, writing, productivity and multimodal tasks.",
+tags: ["Research","Writing","Study"],
+url: "https://gemini.google.com"
 },
 
 {
-    name: "Adobe Firefly",
-    keywords: ["image","design","creative","editing","poster","marketing"],
-    description: "Adobe's generative AI tools for images, design and creative work.",
-    tags: ["Images","Design","Creative"],
-    url: "https://firefly.adobe.com"
+name: "Microsoft Copilot",
+keywords: [
+"writing","business","productivity",
+"image","research","office"
+],
+description:
+"An AI assistant for productivity, writing, research and Microsoft tools.",
+tags: ["Business","Writing","Productivity"],
+url: "https://copilot.microsoft.com"
 },
 
 {
-    name: "Leonardo AI",
-    keywords: ["image","creative","design","art","game","realistic"],
-    description: "An AI platform for generating creative and realistic images.",
-    tags: ["Images","Art","Design"],
-    url: "https://leonardo.ai"
+name: "Adobe Firefly",
+keywords: [
+"image","design","creative",
+"editing","poster","marketing"
+],
+description:
+"Adobe's generative AI tools for images, design and creative work.",
+tags: ["Images","Design","Creative"],
+url: "https://firefly.adobe.com"
 },
 
 {
-    name: "Ideogram",
-    keywords: ["image","design","poster","logo","text","typography"],
-    description: "An AI image generator known for creating visuals with text and typography.",
-    tags: ["Images","Design","Posters"],
-    url: "https://ideogram.ai"
+name: "Leonardo AI",
+keywords: [
+"image","creative","design",
+"art","game","realistic"
+],
+description:
+"An AI platform for generating creative and realistic images.",
+tags: ["Images","Art","Design"],
+url: "https://leonardo.ai"
 },
 
 {
-    name: "HeyGen",
-    keywords: ["video","avatar","presentation","business","training","voice"],
-    description: "An AI video platform for avatars, presentations, training and business videos.",
-    tags: ["Video","Avatar","Business"],
-    url: "https://www.heygen.com"
+name: "Ideogram",
+keywords: [
+"image","design","poster",
+"logo","text","typography"
+],
+description:
+"An AI image generator known for creating visuals with text and typography.",
+tags: ["Images","Design","Posters"],
+url: "https://ideogram.ai"
 },
 
 {
-    name: "Synthesia",
-    keywords: ["video","avatar","training","business","education","presentation"],
-    description: "An AI video platform focused on avatars, training and business communication.",
-    tags: ["Video","Training","Business"],
-    url: "https://www.synthesia.io"
+name: "HeyGen",
+keywords: [
+"video","avatar","presentation",
+"business","training","voice"
+],
+description:
+"An AI video platform for avatars, presentations, training and business videos.",
+tags: ["Video","Avatar","Business"],
+url: "https://www.heygen.com"
 },
 
 {
-    name: "InVideo",
-    keywords: ["video","youtube","marketing","social","script","creator"],
-    description: "An AI video creation platform for social media, marketing and YouTube content.",
-    tags: ["Video","Marketing","YouTube"],
-    url: "https://invideo.io"
+name: "Synthesia",
+keywords: [
+"video","avatar","training",
+"business","education","presentation"
+],
+description:
+"An AI video platform focused on avatars, training and business communication.",
+tags: ["Video","Training","Business"],
+url: "https://www.synthesia.io"
 },
 
 {
-    name: "Descript",
-    keywords: ["video","audio","podcast","transcription","editing","youtube"],
-    description: "An AI-powered editor for video, audio, podcasts and transcription.",
-    tags: ["Video","Audio","Podcast"],
-    url: "https://www.descript.com"
+name: "InVideo",
+keywords: [
+"video","youtube","marketing",
+"social","script","creator"
+],
+description:
+"An AI video creation platform for social media, marketing and YouTube content.",
+tags: ["Video","Marketing","YouTube"],
+url: "https://invideo.io"
 },
 
 {
-    name: "Replit",
-    keywords: ["coding","website","app","programming","prototype","web"],
-    description: "A development platform for building websites, applications and prototypes.",
-    tags: ["Coding","Web","Apps"],
-    url: "https://replit.com"
+name: "Descript",
+keywords: [
+"video","audio","podcast",
+"transcription","editing","youtube"
+],
+description:
+"An AI-powered editor for video, audio, podcasts and transcription.",
+tags: ["Video","Audio","Podcast"],
+url: "https://www.descript.com"
 },
 
 {
-    name: "Cursor",
-    keywords: ["coding","code","programming","developer","debugging","website"],
-    description: "An AI-powered code editor designed to help developers build software faster.",
-    tags: ["Coding","Developer","Programming"],
-    url: "https://cursor.com"
+name: "Replit",
+keywords: [
+"coding","website","app",
+"programming","prototype","web"
+],
+description:
+"A development platform for building websites, applications and prototypes.",
+tags: ["Coding","Web","Apps"],
+url: "https://replit.com"
 },
 
 {
-    name: "Notion AI",
-    keywords: ["writing","notes","productivity","business","meeting","documents"],
-    description: "AI features inside Notion for writing, notes, documents and productivity.",
-    tags: ["Productivity","Writing","Notes"],
-    url: "https://www.notion.so/product/ai"
+name: "Cursor",
+keywords: [
+"coding","code","programming",
+"developer","debugging","website"
+],
+description:
+"An AI-powered code editor designed to help developers build software faster.",
+tags: ["Coding","Developer","Programming"],
+url: "https://cursor.com"
 },
 
 {
-    name: "Zapier",
-    keywords: ["automation","workflow","business","productivity","integrations"],
-    description: "A platform for automating repetitive tasks and connecting different apps.",
-    tags: ["Automation","Business","Productivity"],
-    url: "https://zapier.com"
+name: "Notion AI",
+keywords: [
+"writing","notes","productivity",
+"business","meeting","documents"
+],
+description:
+"AI features inside Notion for writing, notes, documents and productivity.",
+tags: ["Productivity","Writing","Notes"],
+url: "https://www.notion.so/product/ai"
 },
 
 {
-    name: "Jasper",
-    keywords: ["marketing","writing","copywriting","content","business"],
-    description: "An AI platform focused on marketing content and business writing.",
-    tags: ["Marketing","Writing","Business"],
-    url: "https://www.jasper.ai"
+name: "Zapier",
+keywords: [
+"automation","workflow",
+"business","productivity",
+"integrations"
+],
+description:
+"A platform for automating repetitive tasks and connecting different apps.",
+tags: ["Automation","Business","Productivity"],
+url: "https://zapier.com"
 },
 
 {
-    name: "Copy.ai",
-    keywords: ["marketing","sales","writing","copywriting","business","email"],
-    description: "AI tools for marketing, sales, copywriting and business content.",
-    tags: ["Marketing","Sales","Writing"],
-    url: "https://www.copy.ai"
+name: "Jasper",
+keywords: [
+"marketing","writing",
+"copywriting","content","business"
+],
+description:
+"An AI platform focused on marketing content and business writing.",
+tags: ["Marketing","Writing","Business"],
+url: "https://www.jasper.ai"
 },
 
 {
-    name: "Bolt.new",
-    keywords: ["coding","website","app","prototype","web","developer"],
-    description: "An AI-powered platform for building web applications and prototypes.",
-    tags: ["Coding","Web","Apps"],
-    url: "https://bolt.new"
+name: "Copy.ai",
+keywords: [
+"marketing","sales",
+"writing","copywriting",
+"business","email"
+],
+description:
+"AI tools for marketing, sales, copywriting and business content.",
+tags: ["Marketing","Sales","Writing"],
+url: "https://www.copy.ai"
 },
 
 {
-    name: "Lovable",
-    keywords: ["coding","website","app","prototype","web","nocode"],
-    description: "An AI platform for creating web applications from natural-language instructions.",
-    tags: ["Apps","Web","No-code"],
-    url: "https://lovable.dev"
-      }
+name: "Bolt.new",
+keywords: [
+"coding","website","app",
+"prototype","web","developer"
+],
+description:
+"An AI-powered platform for building web applications and prototypes.",
+tags: ["Coding","Web","Apps"],
+url: "https://bolt.new"
+},
+
+{
+name: "Lovable",
+keywords: [
+"coding","website","app",
+"prototype","web","nocode"
+],
+description:
+"An AI platform for creating web applications from natural-language instructions.",
+tags: ["Apps","Web","No-code"],
+url: "https://lovable.dev"
+}
 
 ];
 
 
 // ==========================================
-// UNDERSTAND USER REQUEST
-// ==========================================
-
-// ==========================================
-// UNDERSTAND USER REQUEST
+// ANALYZE REQUEST
 // ==========================================
 
 function analyzeRequest(input) {
 
-    const text = input.toLowerCase().trim();
+    const text = input.toLowerCase();
 
     const needs = {
         goals: [],
         budget: null,
-        audience: null,
-        experience: null,
-        noCode: false
+        noCode: false,
+        beginner: false
     };
 
-    // ----------------------------
-    // CV / RESUME
-    // ----------------------------
 
     if (
-        /\bcv\b/.test(text) ||
+        text.includes("cv") ||
         text.includes("resume") ||
-        text.includes("curriculum vitae") ||
-        text.includes("cover letter") ||
-        text.includes("job application")
+        text.includes("curriculum vitae")
     ) {
         needs.goals.push("cv");
     }
 
-    // ----------------------------
-    // CAREER / JOB
-    // ----------------------------
 
     if (
         text.includes("job") ||
@@ -809,63 +898,41 @@ function analyzeRequest(input) {
         text.includes("emploi") ||
         text.includes("travail") ||
         text.includes("work") ||
-        text.includes("hiring") ||
-        text.includes("recruitment") ||
         text.includes("interview")
     ) {
         needs.goals.push("career");
     }
 
-    // ----------------------------
-    // VIDEO
-    // ----------------------------
 
     if (
         text.includes("video") ||
         text.includes("tiktok") ||
         text.includes("youtube") ||
         text.includes("reel") ||
-        text.includes("short") ||
-        text.includes("film") ||
-        text.includes("edit a video") ||
-        text.includes("video editing")
+        text.includes("short")
     ) {
         needs.goals.push("video");
     }
 
-    // ----------------------------
-    // IMAGE
-    // ----------------------------
 
     if (
         text.includes("image") ||
         text.includes("picture") ||
-        text.includes("photo") ||
-        text.includes("illustration") ||
-        text.includes("visual") ||
-        text.includes("artwork")
+        text.includes("photo")
     ) {
         needs.goals.push("image");
     }
 
-    // ----------------------------
-    // DESIGN / LOGO
-    // ----------------------------
 
     if (
         text.includes("logo") ||
         text.includes("poster") ||
         text.includes("design") ||
-        text.includes("flyer") ||
-        text.includes("banner") ||
-        text.includes("graphic")
+        text.includes("flyer")
     ) {
         needs.goals.push("design");
     }
 
-    // ----------------------------
-    // WRITING
-    // ----------------------------
 
     if (
         text.includes("write") ||
@@ -873,17 +940,11 @@ function analyzeRequest(input) {
         text.includes("article") ||
         text.includes("blog") ||
         text.includes("email") ||
-        text.includes("rewrite") ||
-        text.includes("text") ||
-        text.includes("content") ||
-        text.includes("copywriting")
+        text.includes("rewrite")
     ) {
         needs.goals.push("writing");
     }
 
-    // ----------------------------
-    // STUDY
-    // ----------------------------
 
     if (
         text.includes("study") ||
@@ -891,433 +952,253 @@ function analyzeRequest(input) {
         text.includes("student") ||
         text.includes("learn") ||
         text.includes("course") ||
-        text.includes("homework") ||
-        text.includes("lesson") ||
-        text.includes("school") ||
-        text.includes("university")
+        text.includes("homework")
     ) {
         needs.goals.push("study");
     }
 
-    // ----------------------------
-    // CODING
-    // ----------------------------
 
     if (
         text.includes("code") ||
         text.includes("coding") ||
         text.includes("programming") ||
-        text.includes("programmer") ||
         text.includes("developer") ||
-        text.includes("debug") ||
         text.includes("website") ||
-        text.includes("web app") ||
-        text.includes("application") ||
-        text.includes("software")
+        text.includes("app")
     ) {
         needs.goals.push("coding");
     }
 
-    // ----------------------------
-    // PRESENTATION
-    // ----------------------------
 
     if (
         text.includes("presentation") ||
-        text.includes("presentations") ||
         text.includes("slides") ||
-        text.includes("powerpoint") ||
-        text.includes("pitch deck")
+        text.includes("powerpoint")
     ) {
         needs.goals.push("presentation");
     }
 
-    // ----------------------------
-    // MUSIC
-    // ----------------------------
 
     if (
         text.includes("music") ||
-        text.includes("song") ||
-        text.includes("songs") ||
-        text.includes("beat") ||
-        text.includes("melody")
+        text.includes("song")
     ) {
         needs.goals.push("music");
     }
 
-    // ----------------------------
-    // VOICE
-    // ----------------------------
 
     if (
         text.includes("voice") ||
         text.includes("voiceover") ||
-        text.includes("voice over") ||
         text.includes("narration") ||
-        text.includes("narrator") ||
-        text.includes("dubbing") ||
-        text.includes("dub")
+        text.includes("dubbing")
     ) {
         needs.goals.push("voice");
     }
 
-    // ----------------------------
-    // RESEARCH
-    // ----------------------------
 
     if (
         text.includes("research") ||
         text.includes("sources") ||
-        text.includes("source") ||
         text.includes("facts") ||
-        text.includes("information") ||
-        text.includes("investigate")
+        text.includes("information")
     ) {
         needs.goals.push("research");
     }
 
-    // ----------------------------
-    // BUSINESS
-    // ----------------------------
 
     if (
         text.includes("business") ||
         text.includes("company") ||
         text.includes("marketing") ||
         text.includes("sales") ||
-        text.includes("client") ||
-        text.includes("customer")
+        text.includes("client")
     ) {
         needs.goals.push("business");
     }
 
-    // ----------------------------
-    // AUTOMATION
-    // ----------------------------
-
-    if (
-        text.includes("automation") ||
-        text.includes("automate") ||
-        text.includes("workflow") ||
-        text.includes("repetitive tasks") ||
-        text.includes("integrate")
-    ) {
-        needs.goals.push("automation");
-    }
-
-    // ----------------------------
-    // AUDIO / PODCAST
-    // ----------------------------
-
-    if (
-        text.includes("podcast") ||
-        text.includes("audio") ||
-        text.includes("transcription") ||
-        text.includes("transcribe")
-    ) {
-        needs.goals.push("audio");
-    }
-
-    // ----------------------------
-    // FREE
-    // ----------------------------
 
     if (
         text.includes("free") ||
         text.includes("gratis") ||
         text.includes("gratuit") ||
-        text.includes("gratuitement") ||
-        text.includes("no money") ||
         text.includes("without paying") ||
-        text.includes("don't want to pay") ||
-        text.includes("do not want to pay")
+        text.includes("no money")
     ) {
         needs.budget = "free";
     }
 
-    // ----------------------------
-    // BEGINNER
-    // ----------------------------
 
     if (
         text.includes("beginner") ||
         text.includes("easy") ||
         text.includes("simple") ||
-        text.includes("without experience") ||
-        text.includes("no experience") ||
-        text.includes("easy to use") ||
-        text.includes("not technical")
+        text.includes("no experience")
     ) {
-        needs.experience = "beginner";
+        needs.beginner = true;
     }
 
-    // ----------------------------
-    // NO CODE
-    // ----------------------------
 
     if (
         text.includes("without coding") ||
         text.includes("without code") ||
         text.includes("no-code") ||
         text.includes("nocode") ||
-        text.includes("no code") ||
-        text.includes("don't know how to code") ||
-        text.includes("do not know how to code") ||
-        text.includes("no coding") ||
-        text.includes("without technical skills")
+        text.includes("no coding")
     ) {
         needs.noCode = true;
-        needs.experience = "beginner";
+        needs.beginner = true;
     }
 
-    // ----------------------------
-    // PROFESSIONAL
-    // ----------------------------
-
-    if (
-        text.includes("professional") ||
-        text.includes("advanced") ||
-        text.includes("expert")
-    ) {
-        needs.experience = "professional";
-    }
-
-    // ----------------------------
-    // AUDIENCE
-    // ----------------------------
-
-    if (
-        text.includes("job") ||
-        text.includes("career") ||
-        text.includes("emploi") ||
-        text.includes("travail") ||
-        /\bcv\b/.test(text) ||
-        text.includes("resume") ||
-        text.includes("interview")
-    ) {
-        needs.audience = "job_seeker";
-    }
-
-    if (
-        text.includes("student") ||
-        text.includes("university") ||
-        text.includes("school") ||
-        text.includes("exam")
-    ) {
-        needs.audience = "student";
-    }
-
-    if (
-        text.includes("business") ||
-        text.includes("company") ||
-        text.includes("marketing") ||
-        text.includes("client") ||
-        text.includes("customer")
-    ) {
-        needs.audience = "business";
-    }
 
     return needs;
 }
 
 
 // ==========================================
-// MATCHING ENGINE — IMPROVED
+// MATCHING ENGINE
 // ==========================================
 
 function calculateMatch(tool, needs, input) {
 
-    const text = input.toLowerCase().trim();
+    const text = input.toLowerCase();
 
     let score = 0;
 
-    // ======================================
-    // 1. MAIN GOAL
-    // ======================================
+    const goal = needs.goals[0];
 
-    const mainGoal = needs.goals[0];
 
-    const goalScores = {
+    const scores = {
 
         cv: {
-            "ChatGPT": 45,
-            "Canva": 45,
-            "Grammarly": 32,
-            "Claude": 30,
-            "Gemini": 25
+            "ChatGPT": 55,
+            "Canva": 52,
+            "Grammarly": 42,
+            "Claude": 35
         },
 
         career: {
-            "ChatGPT": 35,
-            "Canva": 25,
-            "Grammarly": 25,
-            "Claude": 25
+            "ChatGPT": 50,
+            "Canva": 35,
+            "Grammarly": 35,
+            "Claude": 30
         },
 
         video: {
-            "CapCut": 50,
-            "Runway": 48,
-            "HeyGen": 42,
-            "Synthesia": 40,
-            "InVideo": 45,
-            "Descript": 38
+            "CapCut": 55,
+            "Runway": 52,
+            "InVideo": 48,
+            "HeyGen": 45,
+            "Synthesia": 42,
+            "Descript": 40
         },
 
         image: {
-            "Midjourney": 50,
-            "Leonardo AI": 48,
-            "Ideogram": 47,
-            "Adobe Firefly": 45,
-            "Canva": 38
+            "Midjourney": 55,
+            "Leonardo AI": 52,
+            "Ideogram": 50,
+            "Adobe Firefly": 48,
+            "Canva": 40
         },
 
         design: {
-            "Canva": 50,
-            "Adobe Firefly": 45,
-            "Ideogram": 44,
-            "Midjourney": 40,
-            "Leonardo AI": 40
+            "Canva": 55,
+            "Adobe Firefly": 48,
+            "Ideogram": 45,
+            "Midjourney": 40
         },
 
         writing: {
-            "ChatGPT": 48,
-            "Claude": 46,
-            "Grammarly": 42,
-            "Gemini": 38,
-            "Jasper": 35,
-            "Copy.ai": 35
+            "ChatGPT": 55,
+            "Claude": 52,
+            "Grammarly": 48,
+            "Gemini": 42,
+            "Jasper": 38,
+            "Copy.ai": 38
         },
 
         study: {
-            "NotebookLM": 50,
-            "ChatGPT": 47,
-            "Perplexity": 42,
-            "Claude": 40,
-            "Gemini": 38
-        },
-
-        coding: {
-            "GitHub Copilot": 50,
-            "Cursor": 48,
-            "Replit": 45,
-            "Bolt.new": 44,
-            "Lovable": 43,
-            "ChatGPT": 40
-        },
-
-        presentation: {
-            "Gamma": 50,
-            "Canva": 45,
-            "ChatGPT": 35,
-            "Microsoft Copilot": 35
-        },
-
-        music: {
-            "Suno": 55
-        },
-
-        voice: {
-            "ElevenLabs": 55,
-            "HeyGen": 35
-        },
-
-        research: {
-            "Perplexity": 50,
-            "NotebookLM": 45,
-            "ChatGPT": 43,
+            "NotebookLM": 55,
+            "ChatGPT": 52,
+            "Perplexity": 45,
             "Claude": 42,
             "Gemini": 40
         },
 
+        coding: {
+            "GitHub Copilot": 55,
+            "Cursor": 53,
+            "Replit": 48,
+            "Bolt.new": 47,
+            "Lovable": 46,
+            "ChatGPT": 45
+        },
+
+        presentation: {
+            "Gamma": 55,
+            "Canva": 50,
+            "ChatGPT": 35
+        },
+
+        music: {
+            "Suno": 60
+        },
+
+        voice: {
+            "ElevenLabs": 60,
+            "HeyGen": 40
+        },
+
+        research: {
+            "Perplexity": 55,
+            "NotebookLM": 50,
+            "ChatGPT": 48,
+            "Claude": 45,
+            "Gemini": 42
+        },
+
         business: {
-            "ChatGPT": 40,
-            "Microsoft Copilot": 38,
-            "Claude": 35,
-            "Jasper": 35,
-            "Copy.ai": 35,
-            "Zapier": 40
-        },
-
-        automation: {
-            "Zapier": 55
-        },
-
-        audio: {
-            "Descript": 50,
-            "ElevenLabs": 45
+            "ChatGPT": 50,
+            "Zapier": 48,
+            "Microsoft Copilot": 45,
+            "Jasper": 42,
+            "Copy.ai": 42
         }
+
     };
 
-    // Main goal score
+
+    // Main goal
+
     if (
-        mainGoal &&
-        goalScores[mainGoal] &&
-        goalScores[mainGoal][tool.name]
+        goal &&
+        scores[goal] &&
+        scores[goal][tool.name]
     ) {
-        score += goalScores[mainGoal][tool.name];
+        score += scores[goal][tool.name];
     }
 
-    // ======================================
-    // 2. SECONDARY GOALS
-    // ======================================
 
-    needs.goals.forEach(goal => {
+    // Keyword matching
 
-        if (goal === mainGoal) return;
+    let matches = 0;
 
-        if (
-            goalScores[goal] &&
-            goalScores[goal][tool.name]
-        ) {
-            score += Math.min(
-                goalScores[goal][tool.name] * 0.25,
-                12
-            );
-        }
-
-    });
-
-    // ======================================
-    // 3. KEYWORD RELEVANCE
-    // ======================================
-
-    let keywordMatches = 0;
-
-    tool.keywords.forEach(keyword => {
+    tool.keywords.forEach(function(keyword) {
 
         if (text.includes(keyword.toLowerCase())) {
-            keywordMatches++;
+            matches++;
         }
 
     });
 
-    score += Math.min(keywordMatches * 3, 15);
+    score += Math.min(matches * 4, 16);
 
-    // ======================================
-    // 4. CAREER / JOB
-    // ======================================
 
-    if (needs.goals.includes("career")) {
-
-        if (
-            tool.name === "ChatGPT" ||
-            tool.name === "Canva" ||
-            tool.name === "Grammarly" ||
-            tool.name === "Claude"
-        ) {
-            score += 8;
-        }
-
-    }
-
-    // ======================================
-    // 5. FREE REQUEST
-    // ======================================
+    // Free
 
     if (needs.budget === "free") {
 
-        const freeFriendlyTools = [
+        const freeTools = [
             "ChatGPT",
             "Canva",
             "Grammarly",
@@ -1325,42 +1206,38 @@ function calculateMatch(tool, needs, input) {
             "NotebookLM",
             "Gemini",
             "Microsoft Copilot",
-            "Replit",
             "Perplexity"
         ];
 
-        if (freeFriendlyTools.includes(tool.name)) {
+        if (freeTools.includes(tool.name)) {
             score += 7;
         }
-
     }
 
-    // ======================================
-    // 6. BEGINNER
-    // ======================================
 
-    if (needs.experience === "beginner") {
+    // Beginner
 
-        const beginnerFriendlyTools = [
+    if (needs.beginner) {
+
+        const easyTools = [
             "ChatGPT",
             "Canva",
             "CapCut",
             "Gamma",
             "NotebookLM",
-            "HeyGen",
             "InVideo",
-            "Lovable"
+            "HeyGen",
+            "Lovable",
+            "Bolt.new"
         ];
 
-        if (beginnerFriendlyTools.includes(tool.name)) {
+        if (easyTools.includes(tool.name)) {
             score += 6;
         }
-
     }
 
-    // ======================================
-    // 7. NO-CODE
-    // ======================================
+
+    // No-code
 
     if (needs.noCode) {
 
@@ -1369,149 +1246,42 @@ function calculateMatch(tool, needs, input) {
             "ChatGPT",
             "CapCut",
             "Gamma",
-            "Replit",
-            "Lovable",
-            "Bolt.new",
             "InVideo",
-            "HeyGen"
+            "HeyGen",
+            "Lovable",
+            "Bolt.new"
         ];
 
         if (noCodeTools.includes(tool.name)) {
             score += 8;
         }
 
-        // Coding tools get a small penalty
         if (
             tool.name === "GitHub Copilot" ||
             tool.name === "Cursor"
         ) {
             score -= 10;
         }
-
     }
 
-    // ======================================
-    // 8. PROFESSIONAL
-    // ======================================
 
-    if (needs.experience === "professional") {
+    // If no goal detected
 
-        const professionalTools = [
-            "ChatGPT",
-            "Claude",
-            "Runway",
-            "Adobe Firefly",
-            "GitHub Copilot",
-            "Cursor",
-            "Perplexity"
-        ];
+    if (!goal) {
 
-        if (professionalTools.includes(tool.name)) {
-            score += 5;
+        if (tool.name === "ChatGPT") {
+            score += 25;
         }
 
-    }
-
-    // ======================================
-    // 9. AUDIENCE
-    // ======================================
-
-    if (needs.audience === "student") {
-
-        const studentTools = [
-            "NotebookLM",
-            "ChatGPT",
-            "Perplexity",
-            "Claude",
-            "Gemini"
-        ];
-
-        if (studentTools.includes(tool.name)) {
-            score += 6;
+        if (tool.name === "Claude") {
+            score += 20;
         }
 
-    }
-
-    if (needs.audience === "job_seeker") {
-
-        const jobTools = [
-            "ChatGPT",
-            "Canva",
-            "Grammarly",
-            "Claude"
-        ];
-
-        if (jobTools.includes(tool.name)) {
-            score += 6;
+        if (tool.name === "Gemini") {
+            score += 20;
         }
-
     }
 
-    if (needs.audience === "business") {
-
-        const businessTools = [
-            "ChatGPT",
-            "Claude",
-            "Microsoft Copilot",
-            "Jasper",
-            "Copy.ai",
-            "Zapier"
-        ];
-
-        if (businessTools.includes(tool.name)) {
-            score += 6;
-        }
-
-    }
-
-    // ======================================
-    // 10. STRONG NEGATIVE MATCHES
-    // ======================================
-
-    // If user wants a CV, music tools should not rank high.
-    if (
-        mainGoal === "cv" &&
-        (
-            tool.name === "Suno" ||
-            tool.name === "ElevenLabs" ||
-            tool.name === "CapCut"
-        )
-    ) {
-        score -= 20;
-    }
-
-    // If user wants music, unrelated productivity tools should drop.
-    if (
-        mainGoal === "music" &&
-        tool.name !== "Suno"
-    ) {
-        score -= 20;
-    }
-
-    // If user wants voice, unrelated tools should drop.
-    if (
-        mainGoal === "voice" &&
-        tool.name !== "ElevenLabs" &&
-        tool.name !== "HeyGen"
-    ) {
-        score -= 15;
-    }
-
-    // If user wants video, unrelated writing tools should drop.
-    if (
-        mainGoal === "video" &&
-        (
-            tool.name === "Grammarly" ||
-            tool.name === "Jasper" ||
-            tool.name === "Copy.ai"
-        )
-    ) {
-        score -= 15;
-    }
-
-    // ======================================
-    // 11. FINAL SCORE
-    // ======================================
 
     return Math.min(
         Math.max(Math.round(score), 0),
@@ -1526,298 +1296,171 @@ function calculateMatch(tool, needs, input) {
 
 function explainMatch(tool, needs) {
 
-    const mainGoal = needs.goals[0];
-
-    // ----------------------------
-    // CV
-    // ----------------------------
-
-    if (mainGoal === "cv") {
-
-        if (tool.name === "Canva") {
-            return "Excellent pour créer un CV professionnel avec des modèles et une présentation visuelle.";
-        }
-
-        if (tool.name === "ChatGPT") {
-            return "Excellent pour rédiger, améliorer et adapter le contenu de votre CV à une offre d'emploi.";
-        }
-
-        if (tool.name === "Grammarly") {
-            return "Utile pour corriger la grammaire, améliorer la clarté et rendre votre CV plus professionnel.";
-        }
-
-        if (tool.name === "Claude") {
-            return "Utile pour rédiger, restructurer et améliorer le contenu d'un CV.";
-        }
-    }
-
-    // ----------------------------
-    // CAREER
-    // ----------------------------
-
-    if (mainGoal === "career") {
-
-        if (tool.name === "ChatGPT") {
-            return "Utile pour préparer votre recherche d'emploi, vos candidatures et vos entretiens.";
-        }
-
-        if (tool.name === "Canva") {
-            return "Utile pour créer un CV et des documents professionnels visuellement attractifs.";
-        }
-
-        if (tool.name === "Grammarly") {
-            return "Utile pour améliorer vos emails, lettres de motivation et candidatures.";
-        }
-    }
-
-    // ----------------------------
-    // VIDEO
-    // ----------------------------
-
-    if (mainGoal === "video") {
-
-        if (tool.name === "CapCut") {
-            return "Très pratique pour créer et modifier rapidement des vidéos pour TikTok, YouTube et les réseaux sociaux.";
-        }
-
-        if (tool.name === "Runway") {
-            return "Puissant pour générer et modifier des vidéos avec des outils d'intelligence artificielle.";
-        }
-
-        if (tool.name === "HeyGen") {
-            return "Utile pour créer des vidéos avec avatars, voix et présentations professionnelles.";
-        }
-
-        if (tool.name === "Synthesia") {
-            return "Adapté aux vidéos de formation, de présentation et de communication professionnelle.";
-        }
-
-        if (tool.name === "InVideo") {
-            return "Pratique pour transformer des idées et scripts en vidéos pour YouTube et les réseaux sociaux.";
-        }
-
-        if (tool.name === "Descript") {
-            return "Utile pour modifier des vidéos et podcasts avec transcription et outils d'édition assistée par IA.";
-        }
-    }
-
-    // ----------------------------
-    // IMAGE
-    // ----------------------------
-
-    if (mainGoal === "image") {
-
-        if (tool.name === "Midjourney") {
-            return "Excellent pour générer des images créatives et artistiques à partir d'une description.";
-        }
-
-        if (tool.name === "Leonardo AI") {
-            return "Très adapté à la création d'images réalistes, créatives et de visuels personnalisés.";
-        }
-
-        if (tool.name === "Ideogram") {
-            return "Particulièrement utile pour créer des images contenant du texte, des affiches et des designs.";
-        }
-
-        if (tool.name === "Adobe Firefly") {
-            return "Utile pour générer et modifier des images et des créations graphiques.";
-        }
-
-        if (tool.name === "Canva") {
-            return "Pratique pour créer rapidement des visuels avec des modèles et des outils de design.";
-        }
-    }
-
-    // ----------------------------
-    // DESIGN
-    // ----------------------------
-
-    if (mainGoal === "design") {
-
-        if (tool.name === "Canva") {
-            return "Très pratique pour créer rapidement des logos, affiches, présentations et contenus visuels.";
-        }
-
-        if (tool.name === "Adobe Firefly") {
-            return "Utile pour générer et modifier des éléments visuels avec l'IA.";
-        }
-
-        if (tool.name === "Ideogram") {
-            return "Particulièrement intéressant pour les affiches, logos et designs contenant du texte.";
-        }
-    }
-
-    // ----------------------------
-    // WRITING
-    // ----------------------------
-
-    if (mainGoal === "writing") {
-
-        if (tool.name === "ChatGPT") {
-            return "Polyvalent pour rédiger, réécrire, corriger et adapter différents types de textes.";
-        }
-
-        if (tool.name === "Claude") {
-            return "Très utile pour rédiger et analyser des textes longs et complexes.";
-        }
-
-        if (tool.name === "Grammarly") {
-            return "Spécialisé dans la correction, la grammaire, la clarté et le style d'écriture.";
-        }
-
-        if (tool.name === "Jasper") {
-            return "Orienté vers la création de contenus marketing et professionnels.";
-        }
-
-        if (tool.name === "Copy.ai") {
-            return "Adapté à la rédaction marketing, aux emails et aux contenus commerciaux.";
-        }
-    }
-
-    // ----------------------------
-    // STUDY
-    // ----------------------------
-
-    if (mainGoal === "study") {
-
-        if (tool.name === "NotebookLM") {
-            return "Très utile pour étudier à partir de vos propres documents, notes et sources.";
-        }
-
-        if (tool.name === "ChatGPT") {
-            return "Utile pour expliquer les cours, créer des exercices et préparer un examen.";
-        }
-
-        if (tool.name === "Perplexity") {
-            return "Utile pour rechercher des informations et consulter des sources pendant vos études.";
-        }
-
-        if (tool.name === "Claude") {
-            return "Utile pour comprendre, résumer et analyser des documents d'étude.";
-        }
-    }
-
-    // ----------------------------
-    // CODING
-    // ----------------------------
-
-    if (mainGoal === "coding") {
-
-        if (tool.name === "GitHub Copilot") {
-            return "Assistant spécialisé pour écrire, comprendre et améliorer du code.";
-        }
-
-        if (tool.name === "Cursor") {
-            return "Éditeur de code avec IA conçu pour aider au développement et au débogage.";
-        }
-
-        if (tool.name === "Replit") {
-// ==========================================
-// EXPLANATION
-// ==========================================
-
-function explainMatch(tool, needs) {
+    const goal = needs.goals[0];
 
 
-    if (needs.goals.includes("cv")) {
+    if (goal === "cv") {
 
-        if (tool.name === "Canva") {
+        if (tool.name === "ChatGPT")
+            return "Excellent pour rédiger, améliorer et adapter le contenu de votre CV.";
 
-            return "Excellent pour créer un CV professionnel avec des modèles et une présentation visuelle.";
+        if (tool.name === "Canva")
+            return "Excellent pour créer un CV professionnel avec des modèles visuels.";
 
-        }
+        if (tool.name === "Grammarly")
+            return "Utile pour corriger la grammaire et améliorer le texte de votre CV.";
 
-
-        if (tool.name === "ChatGPT") {
-
-            return "Excellent pour rédiger, améliorer et adapter le contenu de votre CV à un emploi.";
-
-        }
-
-
-        if (tool.name === "Grammarly") {
-
-            return "Utile pour corriger et améliorer le texte de votre CV.";
-
-        }
     }
 
 
-    if (needs.goals.includes("video")) {
+    if (goal === "video") {
 
-        if (tool.name === "CapCut") {
-
+        if (tool.name === "CapCut")
             return "Très pratique pour créer et modifier rapidement des vidéos pour les réseaux sociaux.";
 
-        }
-
-
-        if (tool.name === "Runway") {
-
+        if (tool.name === "Runway")
             return "Puissant pour générer et modifier des vidéos avec l'intelligence artificielle.";
 
-        }
+        if (tool.name === "InVideo")
+            return "Utile pour transformer des idées et des scripts en vidéos.";
+
+        if (tool.name === "HeyGen")
+            return "Utile pour créer des vidéos avec des avatars et des voix IA.";
+
     }
 
 
-    if (needs.goals.includes("study")) {
+    if (goal === "study") {
 
-        if (tool.name === "NotebookLM") {
-
+        if (tool.name === "NotebookLM")
             return "Très utile pour étudier à partir de vos documents et obtenir des explications.";
 
-        }
+        if (tool.name === "ChatGPT")
+            return "Utile pour expliquer les cours, créer des exercices et préparer les examens.";
 
+        if (tool.name === "Perplexity")
+            return "Utile pour rechercher des informations et consulter des sources.";
 
-        if (tool.name === "ChatGPT") {
-
-            return "Utile pour expliquer les cours, créer des exercices et préparer un examen.";
-
-        }
     }
 
 
-    if (needs.goals.includes("image")) {
+    if (goal === "image") {
 
-        if (tool.name === "Midjourney") {
+        if (tool.name === "Midjourney")
+            return "Excellent pour générer des images créatives et artistiques.";
 
-            return "Excellent pour générer des images créatives avec l'intelligence artificielle.";
+        if (tool.name === "Leonardo AI")
+            return "Très adapté à la création d'images réalistes et créatives.";
 
-        }
+        if (tool.name === "Ideogram")
+            return "Très utile pour créer des images contenant du texte.";
+
     }
 
 
-    if (needs.goals.includes("coding")) {
+    if (goal === "design") {
 
-        if (tool.name === "GitHub Copilot") {
+        if (tool.name === "Canva")
+            return "Très pratique pour créer rapidement des logos, affiches et designs.";
 
-            return "Un assistant spécialisé pour écrire, comprendre et améliorer du code.";
+        if (tool.name === "Adobe Firefly")
+            return "Utile pour générer et modifier des créations visuelles avec l'IA.";
 
-        }
+        if (tool.name === "Ideogram")
+            return "Particulièrement utile pour les affiches, logos et designs avec du texte.";
 
-
-        if (tool.name === "ChatGPT") {
-
-            return "Utile pour écrire du code, expliquer les erreurs et résoudre des problèmes.";
-
-        }
     }
 
 
-    if (needs.goals.includes("presentation")) {
+    if (goal === "writing") {
 
-        if (tool.name === "Gamma") {
+        if (tool.name === "ChatGPT")
+            return "Polyvalent pour rédiger, réécrire et améliorer différents types de textes.";
 
-            return "Conçu pour créer rapidement des présentations et des documents visuels.";
+        if (tool.name === "Claude")
+            return "Utile pour rédiger et analyser des textes longs.";
 
-        }
+        if (tool.name === "Grammarly")
+            return "Spécialisé dans la correction, la grammaire et la clarté.";
+
+    }
 
 
-        if (tool.name === "Canva") {
+    if (goal === "coding") {
 
+        if (tool.name === "GitHub Copilot")
+            return "Assistant spécialisé pour écrire et comprendre du code.";
+
+        if (tool.name === "Cursor")
+            return "Éditeur de code avec IA pour développer et déboguer.";
+
+        if (tool.name === "Replit")
+            return "Pratique pour créer des sites et applications.";
+
+        if (tool.name === "Lovable")
+            return "Permet de créer des applications web avec des instructions simples.";
+
+        if (tool.name === "Bolt.new")
+            return "Permet de construire des applications web à partir d'instructions.";
+
+        if (tool.name === "ChatGPT")
+            return "Utile pour écrire du code et résoudre des problèmes de programmation.";
+
+    }
+
+
+    if (goal === "presentation") {
+
+        if (tool.name === "Gamma")
+            return "Conçu pour créer rapidement des présentations.";
+
+        if (tool.name === "Canva")
             return "Très pratique pour créer des présentations visuellement professionnelles.";
 
-        }
+    }
+
+
+    if (goal === "music") {
+
+        if (tool.name === "Suno")
+            return "Spécialisé dans la création de chansons et de musique avec l'IA.";
+
+    }
+
+
+    if (goal === "voice") {
+
+        if (tool.name === "ElevenLabs")
+            return "Spécialisé dans la génération de voix, voix off et doublage.";
+
+        if (tool.name === "HeyGen")
+            return "Utile pour créer des vidéos avec avatars et voix IA.";
+
+    }
+
+
+    if (goal === "research") {
+
+        if (tool.name === "Perplexity")
+            return "Conçu pour rechercher des informations avec des sources.";
+
+        if (tool.name === "NotebookLM")
+            return "Très utile pour analyser vos propres documents et sources.";
+
+        if (tool.name === "ChatGPT")
+            return "Utile pour analyser et expliquer des informations.";
+
+    }
+
+
+    if (goal === "business") {
+
+        if (tool.name === "ChatGPT")
+            return "Polyvalent pour les tâches professionnelles, le contenu et l'analyse.";
+
+        if (tool.name === "Zapier")
+            return "Très utile pour automatiser des tâches professionnelles.";
+
     }
 
 
@@ -1831,14 +1474,15 @@ function explainMatch(tool, needs) {
 
 function findAI() {
 
-    const input = document.getElementById("userInput").value.trim();
+    const input =
+        document.getElementById("userInput").value.trim();
 
-
-    // Empty request
 
     if (!input) {
 
-        alert("Please tell us what you want AI to help you with.");
+        alert(
+            "Please tell us what you want AI to help you with."
+        );
 
         return;
     }
@@ -1847,53 +1491,56 @@ function findAI() {
     const needs = analyzeRequest(input);
 
 
-    const scoredTools = tools.map(tool => {
+    let scoredTools = tools.map(function(tool) {
 
         return {
-
             tool: tool,
-
             score: calculateMatch(tool, needs, input)
-
         };
 
     });
 
 
-    // Sort from highest to lowest
+    scoredTools.sort(function(a, b) {
 
-    scoredTools.sort((a, b) => b.score - a.score);
+        return b.score - a.score;
 
-
-    // Take only relevant tools
-
-    let results = scoredTools.filter(item => item.score > 0);
+    });
 
 
-    // Maximum 5 results
+    let results =
+        scoredTools
+        .filter(function(item) {
+            return item.score > 10;
+        })
+        .slice(0, 5);
 
-    results = results.slice(0, 5);
 
+    const resultsList =
+        document.getElementById("resultsList");
 
-    const resultsList = document.getElementById("resultsList");
 
     resultsList.innerHTML = "";
 
 
-    results.forEach(item => {
+    results.forEach(function(item) {
 
         const tool = item.tool;
 
-        const card = document.createElement("div");
+        const card =
+            document.createElement("div");
+
 
         card.className = "result-card";
 
 
         let tagsHTML = "";
 
-        tool.tags.forEach(tag => {
 
-            tagsHTML += `<span class="tag">${tag}</span>`;
+        tool.tags.forEach(function(tag) {
+
+            tagsHTML +=
+                `<span class="tag">${tag}</span>`;
 
         });
 
@@ -1930,7 +1577,7 @@ function findAI() {
                 class="try-btn"
                 href="${tool.url}"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
             >
                 TRY TOOL →
             </a>
@@ -1943,18 +1590,18 @@ function findAI() {
     });
 
 
-    // Show results
+    const resultsSection =
+        document.getElementById("results");
 
-    const resultsSection = document.getElementById("results");
 
     resultsSection.style.display = "block";
 
 
-    document.getElementById("resultDescription").textContent =
+    document.getElementById(
+        "resultDescription"
+    ).textContent =
         `We analyzed your request and found ${results.length} matching AI tools.`;
 
-
-    // Scroll to results
 
     resultsSection.scrollIntoView({
         behavior: "smooth"
@@ -1964,23 +1611,31 @@ function findAI() {
 
 
 // ==========================================
-// ENTER KEY
+// BUTTON + ENTER
 // ==========================================
 
-document.getElementById("userInput").addEventListener(
-    "keydown",
-    function(event) {
+document
+    .getElementById("findButton")
+    .addEventListener(
+        "click",
+        findAI
+    );
 
-        if (event.key === "Enter") {
 
-            findAI();
+document
+    .getElementById("userInput")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+                findAI();
+            }
 
         }
-
-    }
-);
+    );
 
 </script>
 
 </body>
-</html>
+    </html>
